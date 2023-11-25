@@ -1,0 +1,14 @@
+/* Style the menu icon */
+#menu-icon {
+    z-index: 1;
+}
+
+/* Define the styles for the open and closed sidebar */
+#sidebar {
+    transform: translateX(0);
+}
+
+#sidebar.closed {
+    transform: translateX(-64px); /* Adjust as needed */
+}
+
