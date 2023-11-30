@@ -30,7 +30,6 @@
                <option selected>All Voters</option>
                <option value="">Voted</option>
                <option value="">Not Voted</option>
-
            </select>
 
         </div>
