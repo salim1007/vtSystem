@@ -37,7 +37,7 @@
     </div>
     <div class="flex justify-center w-full bg-slate-600 ">
         @if($this->showProfile)
-            <livewire:user-pages.user-terms />
+            <livewire:user-pages.user-profile />
         @elseif($this->showCandidates)
             <livewire:user-pages.user-candidates />
         @endif

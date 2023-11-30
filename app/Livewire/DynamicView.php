@@ -6,9 +6,7 @@ use Livewire\Component;
 
 class DynamicView extends Component
 {
-    public $showModal = false;
-    public $showDropdown = false;
-    public $showMenu=false;
+
     public $showProfile=true;
     public $showCandidates =false;
     public $showHowTo =false;
@@ -98,21 +96,7 @@ class DynamicView extends Component
         $this->showVote = false;
         $this->showHowTo = false;
     }
-    public function openNotification(){
-        $this->showDropdown = !$this->showDropdown;
-    }
-    public function toggleMenu(){
-        $this->showMenu = !$this->showMenu;
-    }
-    public function closeNotification(){
-        $this->showDropdown = !$this->showDropdown;
-    }
-    public function openModal(){
-        $this->showModal = !$this->showModal;
-    }
-    public function closeModal(){
-        $this->showModal = !$this->showModal;
-    }
+
 
     public function render()
     {
