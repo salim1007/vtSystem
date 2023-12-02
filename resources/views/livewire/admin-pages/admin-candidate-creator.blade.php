@@ -49,37 +49,57 @@
                     </div>
             </div>
 
-            <div class="flex flex-col bg-gray-400 p-3 rounded-lg mb-8">
-                <form class="relative z-0 xs:w-52 sm:w-72 smx:w-96 mb-5 group">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload Photos</label>
-                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
-                    <div class=" xs:text-xs flex mt-8">
-                        Display multiple photos here
-                    </div>
-                    <button type="submit" class="xs:text-xs p-2 rounded-md bg-blue-400 mt-6">
-                        Upload
-                    </button>
-                </form>
-
-
+            <div class="flex w-full p-6 ">
+                <div class="flex flex-col w-fit bg-gray-400 p-3 rounded-lg mb-8">
+                    <form class="relative z-0 w-full mb-5 group">
+                        <label class="block mb-2  text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload Photos</label>
+                        <input class="block w-full xs:w-44 sm:w-64 smx:w-96 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                        <div class="bg-red-500 xs:text-xs rounded-md p-1 text-white flex w-full inline-grid grid-cols-3 gap-4 mt-8">
+                            Display multiple photos here
+                        </div>
+                        <button type="submit" class="xs:text-xs p-2 rounded-md bg-blue-400 mt-6">
+                            Upload
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <div class="flex flex-col bg-gray-400 p-3 rounded-lg mb-8">
-                <form class="relative z-0 xs:w-52 sm:w-72 smx:w-96 mb-5 group">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload Videos</label>
-                    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+            <div class="flex w-full p-6 ">
+                <div class="flex flex-col w-fit bg-gray-400 p-3 rounded-lg mb-8">
+                    <form class="relative z-0 w-full mb-5 group">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Upload Videos</label>
+                        <input class="block w-full xs:w-44 sm:w-64 smx:w-96 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
 
-                    <video class="w-full mt-4 rounded-md" controls>
-                        <source src="/docs/videos/flowbite.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                        <div class="flex w-full  sml:inline-grid sml:grid-cols-3 smx:inline-grid smx:grid-cols-2 xs:inline-grid xs:grid-cols-1 gap-4">
+                            <video class=" w-full mt-4 rounded-md" controls>
+                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <video class=" w-full mt-4 rounded-md" controls>
+                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <video class=" w-full mt-4 rounded-md" controls>
+                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <video class=" w-full mt-4 rounded-md" controls>
+                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <video class=" w-full mt-4 rounded-md" controls>
+                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
 
-                    <button type="submit" class="xs:text-xs p-2 rounded-md bg-blue-400 mt-6">
-                        Upload
-                    </button>
-                </form>
+                        <button type="submit" class="xs:text-xs p-2 rounded-md bg-blue-400 mt-6">
+                            Upload
+                        </button>
+                    </form>
 
 
+                </div>
             </div>
 
         </div>
