@@ -1,32 +1,93 @@
-<div class="flex flex-col w-full h-full">
+<div class="flex flex-col w-full xs:text-xs h-full">
     <div class="flex h-14 pl-4 items-center shadow-lg bg-blue-400 w-full"></div>
     <div class="flex flex-col bg-gray-400 h-full">
         <div class="w-full p-3">
-            <button class="flex rounded-md bg-green-200 p-2">Settings</button>
+            <button onclick="openModal(true)" class="flex rounded-md bg-green-200 shadow-lg p-2">Settings</button>
         </div>
         <span class=" flex flex-col mt-4 justify-center items-center font-medium">Election Progress</span>
-        <div class="mt-4 bg-green-200 flex gap-3 w-full p-3">
-            <div class="flex flex-col gap-3 w-1/2">
-                <div class="flex gap-2 bg-purple-400 justify-between rounded-md p-3">
-                    <span>Post:</span>
-                    <span>Chairperson</span>
+        <div class="mt-4 bg-green-200 xs:flex xs:flex-col flex gap-3 w-full p-3">
+            <div class="flex flex-col gap-3 xs:w-full smx:w-72 w-1/2">
+                <div class="flex gap-2 bg-purple-400 shadow-lg justify-between rounded-md p-3">
+                    <span class="font-medium">Post:</span>
+                    <span class="italic font-medium text-white">Chairperson</span>
                 </div>
-                <div class="flex justify-between bg-red-200 rounded-md p-3">
-                    <span>Candidates:</span>
-                    <div class="flex flex-col">
+                <div class="flex justify-between shadow-lg bg-red-200 rounded-md p-3">
+                    <span class="font-medium">Candidates:</span>
+                    <div class="flex font-medium text-white italic flex-col">
                         <span>Salim</span>
                         <span>Isak</span>
                     </div>
                 </div>
             </div>
-            <div class="flex w-1/2">
-                <div class="bg-blue-200 w-full rounded-md"  >
+            <span class="font-medium italic ml-3 mt-4">Statistics</span>
+            <div class="flex shadow-lg smx:w-3/4 xs:w-full w-1/2">
+                <div class="bg-slate-300 w-full rounded-md"  >
                     <div class="px-1  w-full" id="chart"></div>
                 </div>
             </div>
         </div>
 
+        <div class="mt-4 bg-green-200 xs:flex xs:flex-col flex gap-3 w-full p-3">
+            <div class="flex flex-col gap-3 xs:w-full smx:w-72 w-1/2">
+                <div class="flex gap-2 bg-purple-400 shadow-lg justify-between rounded-md p-3">
+                    <span class="font-medium">Post:</span>
+                    <span class="italic font-medium text-white">Chairperson</span>
+                </div>
+                <div class="flex justify-between shadow-lg bg-red-200 rounded-md p-3">
+                    <span class="font-medium">Candidates:</span>
+                    <div class="flex font-medium text-white italic flex-col">
+                        <span>Salim samsn</span>
+                        <span>Isak</span>
+                    </div>
+                </div>
+            </div>
+            <span class="font-medium italic ml-3 mt-4">Statistics</span>
+            <div class="flex shadow-lg smx:w-3/4 xs:w-full w-1/2">
+                <div class="bg-slate-300 w-full rounded-md"  >
+                    <div class="px-1  w-full" id="chartz"></div>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
+
+    <!-- overlay -->
+    <div id="modal_overlay" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0">
+
+        <!-- modal -->
+        <div id="modal" class="pacity-0 transform -translate-y-full scale-150  relative w-10/12 md:w-1/2 h-1/2 md:h-3/4 bg-white rounded shadow-lg transition-opacity transition-transform duration-300">
+
+            <!-- button close -->
+            <button
+                onclick="openModal(false)"
+                class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white">
+                &cross;
+            </button>
+
+            <!-- header -->
+            <div class="px-4 py-3 border-b border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-600">Settings</h2>
+            </div>
+
+            <!-- body -->
+            <div class="w-full p-3">
+                Set Timer
+            </div>
+
+            <!-- footer -->
+            <div class="absolute bottom-0 left-0 px-4 py-3 border-t border-gray-200 w-full flex justify-end items-center gap-3">
+                <button class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded text-white focus:outline-none">Set</button>
+                <button
+                    onclick="openModal(false)"
+                    class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white focus:outline-none"
+                >Close</button>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 
 
@@ -35,7 +96,8 @@
     <script>
        var options = {
             chart: {
-                type: 'bar'
+                type: 'bar',
+                height:'250'
             },
             plotOptions: {
                 bar: {
@@ -49,11 +111,66 @@
                 }, {
                     x: 'Isak',
                     y: 13000
-                }]
+                }],
+                name:'votes'
             }]
         }
-       var chart = new ApexCharts(document.querySelector("#chart"), options);
+       var chart = new ApexCharts(document.querySelector("#chartz"), options);
 
        chart.render();
+    </script>
+@endpush
+
+@push('js')
+    <script>
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'250'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: 'Salim',
+                    y: 230
+                }, {
+                    x: 'Isak',
+                    y: 400
+                }],
+                name:'votes'
+            }]
+        }
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+        chart.render();
+
+        const modal_overlay = document.querySelector('#modal_overlay');
+        const modal = document.querySelector('#modal');
+
+        function openModal (value){
+            const modalCl = modal.classList
+            const overlayCl = modal_overlay
+
+            if(value){
+                overlayCl.classList.remove('hidden')
+                setTimeout(() => {
+                    modalCl.remove('opacity-0')
+                    modalCl.remove('-translate-y-full')
+                    modalCl.remove('scale-150')
+                }, 100);
+            } else {
+                modalCl.add('-translate-y-full')
+                setTimeout(() => {
+                    modalCl.add('opacity-0')
+                    modalCl.add('scale-150')
+                }, 100);
+                setTimeout(() => overlayCl.classList.add('hidden'), 300);
+            }
+        }
+        openModal(false)
     </script>
 @endpush

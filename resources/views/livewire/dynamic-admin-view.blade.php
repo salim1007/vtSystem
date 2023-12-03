@@ -37,7 +37,7 @@
     </div>
     <div class="flex justify-center w-full bg-slate-600 ">
         @if($this->showDashboard)
-            <livewire:admin-pages.admin-progress-page />
+            <livewire:admin-pages.admin-mailbox />
         @endif
     </div>
 
