@@ -12,7 +12,7 @@
 </head>
 <body>
 <!-- component -->
-<div>
+<div class="flex w-screen">
     <livewire:register-form/>
 </div>
 </body>
