@@ -16,13 +16,16 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('midname');
             $table->string('surname');
+            $table->string('username');
             $table->string('email');
             $table->string('voteNumber');
             $table->string('regNo');
             $table->string('phoneNumber');
             $table->string('photoUrl');
-            $table->string('course');
+            $table->string('college');
+            $table->string('programme');
             $table->string('yearOfStudy');
+            $table->string('role')->default('voter');
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

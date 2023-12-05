@@ -16,7 +16,7 @@
 
 <!-- component -->
 <div  class="flex w-screen">
-    <livewire:dynamic-admin-view/>
+    <livewire:dynamic-view/>
 </div>
 @stack('js')
 </body>

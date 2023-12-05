@@ -13,10 +13,12 @@ class RegisterForm extends Component
     public $firstname;
     public $midname;
     public $surname;
+    public $username;
+    public $college;
     public $email;
     public $voteNumber;
     public $profilePic;
-    public $course;
+    public $programme;
     public $regNo;
     public $phoneNumber;
     public $yearOfStudy;
@@ -30,12 +32,14 @@ class RegisterForm extends Component
             'midname'=>'required|max:30',
             'surname'=>'required|max:30',
             'phoneNumber'=>'required|min:10|max:10',
-            'regNo'=>'required|min:13|max:13',
+            'regNo'=>'required|string|min:13|max:13',
             'password'=>'required:min:8',
+            'username'=>'required|max:20',
             'email'=>'required|email|unique:users|max:109',
             'voteNumber'=>'required|min:8|max:8',
             'profilePic'=>'nullable|file|mimes:png,jpeg,jpg|max:2048',
-            'course'=>'required',
+            'programme'=>'required',
+            'college'=>'required',
             'yearOfStudy'=>'required',
             'confirmPassword'=>'required|same:password'
         ]);
@@ -51,18 +55,20 @@ class RegisterForm extends Component
             'firstname'=>$this->firstname,
             'midname'=>$this->midname,
             'surname'=>$this->surname,
+            'username'=>$this->username,
+            'college'=>$this->college,
             'password'=>Hash::make($this->password),
             'email'=>$this->email,
             'regNo'=>$this->regNo,
             'phoneNumber'=>$this->phoneNumber,
             'voteNumber'=>$this->voteNumber,
             'photoUrl'=>$this->path,
-            'course'=>$this->course,
+            'programme'=>$this->course,
             'yearOfStudy'=>$this->yearOfStudy,
         ]);
 
 
-        $this->reset('firstname','midname','phoneNumber','regNo','surname','profilePic','password','confirmPassword','email','voteNumber','course','yearOfStudy');
+        $this->reset('firstname','midname','phoneNumber','username','college','regNo','surname','profilePic','password','confirmPassword','email','voteNumber','programme','yearOfStudy');
         session()->flash('success','Successfully registered');
 
     }

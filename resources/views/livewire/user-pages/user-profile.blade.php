@@ -1,20 +1,26 @@
 <div class="relative justify-center w-full items-center flex flex-col">
+{{--   --}}
     <!-- Overlay div (below the content) -->
     <div  class=" absolute top-0 left-0 inset-48 xs:h-20 xs:-ml-5 xs:inset-14 inline-flex llg:-ml-6 smx:ml-12 bg-yellow-800 sm:h-28 sm:inset-10 sm:w-2/3 sm:ml-7 sml:h-32 sml:inset-12 sml:ml-14 sml:w-96  md:h-44 md:inset-12 xl:h-56 lg:h-52 lg:w-2/3 md:ml-11 lg:inset-48 md:w-2/3 rounded-3xl opacity-50 mt-24 h-56 w-3/4 lg:-ml-16 xl:ml-4  ">
         <div class="flex md:w-28 xl:w-44 lg:w-36 xs:w-14 xs:m-3 items-center ml-6 bg-green-400 mt-6 rounded-xl sml:w-20 sm:m-3 sm:w-20 sml:m-3 w-44 mb-6">salim</div>
     </div>
 
     <!-- Content div -->
-    <div  class="bg-blue-500 xs:w-64 xs:h-44 sm:w-3/4 sm:h-44 md:h-52 lg:h-96 sml:h-48 sml:w-3/4 md:w-4/5 w-full lg:w-5/6 xl:w-5/6 flex flex-col items-end mt-4 rounded-xl text-white p-4 h-96">
+    <div  class="bg-blue-500 xs:w-64 xs:h-44 sm:w-3/4  sm:h-44 md:h-52 lg:h-96 sml:h-48 sml:w-3/4 md:w-4/5 w-full lg:w-5/6 xl:w-5/6 flex flex-col items-end mt-4 rounded-xl text-white p-4 h-96">
         <div class="w-16 flex gap-3">
-            <div class="flex gap-3">
-                <button wire:click="openModal" >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16"> <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/> <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/> </svg>
-                </button>
+            <div class="flex gap-2 flex-row-reverse -ml-4">
 
-                <div class="relative inline-block text-left">
+                    <button wire:click="openModal" class="" >
+                        <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 16L21 12M21 12L17 8M21 12L7 12M13 16V17C13 18.6569 11.6569 20 10 20H6C4.34315 20 3 18.6569 3 17V7C3 5.34315 4.34315 4 6 4H10C11.6569 4 13 5.34315 13 7V8" stroke="#374151" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                    </button>
+                    <button wire:click="openModal"  >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16"> <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/> <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/> </svg>
+                    </button>
+
+
+                <div class="relative inline-block text-left ">
                     <button wire:click="openNotification" class="flex items-center justify-center w-8 h-8 text-gray-500 hover:text-gray-900 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
                         </svg>
                     </button>
@@ -56,7 +62,7 @@
 
                                 <div class="flex flex-col gap-1">
                                     <label class="flex sm:text-xs smx:text-sm">Profile Picture</label>
-                                    <input type="file" class=" flex bg-gray-500 sm:text-xs smx:text-sm  rounded-md sm:w-64 md:w-80" >
+                                    <input type="file" class=" flex sm:text-xs smx:text-sm bg-gray-500rounded-md sm:w-64 md:w-80" >
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label class="flex sm:text-xs smx:text-sm">Description</label>
