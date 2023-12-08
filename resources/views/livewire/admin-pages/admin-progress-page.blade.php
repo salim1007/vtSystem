@@ -2,7 +2,7 @@
     <div class="flex h-14 pl-4 items-center shadow-lg bg-blue-400 w-full"></div>
     <div class="flex flex-col bg-gray-400 h-full">
         <div class="w-full p-3">
-            <button onclick="openModal(true)" class="flex rounded-md bg-green-200 shadow-lg p-2">Settings</button>
+            <button type="button" onclick="openModal(true)" class="flex rounded-md bg-green-200 shadow-lg p-2">Settings</button>
         </div>
         <span class=" flex flex-col mt-4 justify-center items-center font-medium">Election Progress</span>
         <div class="mt-4 bg-green-200 xs:flex xs:flex-col flex gap-3 w-full p-3">
@@ -44,7 +44,7 @@
             <span class="font-medium italic ml-3 mt-4">Statistics</span>
             <div class="flex shadow-lg smx:w-3/4 xs:w-full w-1/2">
                 <div class="bg-slate-300 w-full rounded-md"  >
-                    <div class="px-1  w-full" id="chartz"></div>
+                    <div class="px-1  w-full" id="chart1"></div>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
     <div id="modal_overlay" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0">
 
         <!-- modal -->
-        <div id="modal" class="pacity-0 transform -translate-y-full scale-150  relative w-10/12 md:w-1/2 h-1/2 md:h-3/4 bg-white rounded shadow-lg transition-opacity transition-transform duration-300">
+        <div id="modal" class="opacity-0 transform -translate-y-full scale-150  relative w-10/12 md:w-1/2 h-1/2 md:h-3/4 bg-white rounded shadow-lg transition-opacity transition-transform duration-300">
 
             <!-- button close -->
             <button
@@ -115,7 +115,7 @@
                 name:'votes'
             }]
         }
-       var chart = new ApexCharts(document.querySelector("#chartz"), options);
+       var chart = new ApexCharts(document.querySelector("#chart1"), options);
 
        chart.render();
     </script>
@@ -148,29 +148,32 @@
 
         chart.render();
 
-        const modal_overlay = document.querySelector('#modal_overlay');
-        const modal = document.querySelector('#modal');
 
-        function openModal (value){
-            const modalCl = modal.classList
-            const overlayCl = modal_overlay
-
-            if(value){
-                overlayCl.classList.remove('hidden')
-                setTimeout(() => {
-                    modalCl.remove('opacity-0')
-                    modalCl.remove('-translate-y-full')
-                    modalCl.remove('scale-150')
-                }, 100);
-            } else {
-                modalCl.add('-translate-y-full')
-                setTimeout(() => {
-                    modalCl.add('opacity-0')
-                    modalCl.add('scale-150')
-                }, 100);
-                setTimeout(() => overlayCl.classList.add('hidden'), 300);
-            }
-        }
-        openModal(false)
     </script>
 @endpush
+<script>
+    const modal_overlay = document.querySelector('#modal_overlay');
+    const modal = document.querySelector('#modal');
+
+    function openModal(value){
+        const modalCl = modal.classList
+        const overlayCl = modal_overlay
+
+        if(value){
+            overlayCl.classList.remove('hidden')
+            setTimeout(() => {
+                modalCl.remove('opacity-0')
+                modalCl.remove('-translate-y-full')
+                modalCl.remove('scale-150')
+            }, 100);
+        } else {
+            modalCl.add('-translate-y-full')
+            setTimeout(() => {
+                modalCl.add('opacity-0')
+                modalCl.add('scale-150')
+            }, 100);
+            setTimeout(() => overlayCl.classList.add('hidden'), 300);
+        }
+    }
+    openModal(false)
+</script>

@@ -23,11 +23,46 @@ Route::get('/login', function () {
 });
 
 Route::get('/dynamic', function () {
-    return view('viewchanger');
+    $token = session()->get('jwt_token');
+    return view('viewchanger', ['token' => $token]);
 });
+
 
 Route::get('/userProfile', function () {
     return view('user');
 });
+
+Route::get('/dashboard', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','dashboard');
+    return view('adminview', ['token' => $token]);
+});
+
+Route::get('/candlist', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','candlist');
+    return view('adminview', ['token' => $token]);
+});
+Route::get('/createPosts', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','createPosts');
+    return view('adminview', ['token' => $token]);
+});
+Route::get('/editCandidate', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','editCandidate');
+    return view('adminview', ['token' => $token]);
+});
+Route::get('/progress', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','progress');
+    return view('adminview', ['token' => $token]);
+});
+Route::get('/mailbox', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','mailbox');
+    return view('adminview', ['token' => $token]);
+});
+
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');

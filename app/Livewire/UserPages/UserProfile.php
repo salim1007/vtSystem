@@ -2,6 +2,7 @@
 
 namespace App\Livewire\UserPages;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class UserProfile extends Component
@@ -24,6 +25,15 @@ class UserProfile extends Component
     }
     public function closeModal(){
         $this->showModal = !$this->showModal;
+    }
+    public function logout(){
+        Auth::logout();
+
+        session()->forget('jwt_token');
+
+        return redirect()->to('/login');
+
+
     }
     public function render()
     {

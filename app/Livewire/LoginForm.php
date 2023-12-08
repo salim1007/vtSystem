@@ -23,11 +23,17 @@ class LoginForm extends Component
             $user = Auth::user(); // Get the authenticated user
             $token = JWTAuth::fromUser($user); // Generate JWT token for the user
 
-            // You can then store this token in the session or return it to the client as needed
-            // For example, to store it in the session:
             session()->put('jwt_token', $token);
 
-            return redirect()->to('/register'); // Replace with your intended post-login route
+
+            if(auth()->user()->role == 'admin'){
+                return redirect()->to('/dashboard');
+
+            }elseif (auth()->user()->role == 'voter'){
+                return redirect()->to('/dynamic');
+            }
+
+
         } else {
             session()->flash('error', 'Invalid credentials. Please try again.');
         }
