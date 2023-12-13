@@ -2,7 +2,17 @@
 {{--   --}}
     <!-- Overlay div (below the content) -->
     <div  class=" absolute top-0 left-0 inset-48 xs:h-20 xs:-ml-5 xs:inset-14 inline-flex llg:-ml-6 smx:ml-12 bg-yellow-800 sm:h-28 sm:inset-10 sm:w-2/3 sm:ml-7 sml:h-32 sml:inset-12 sml:ml-14 sml:w-96  md:h-44 md:inset-12 xl:h-56 lg:h-52 lg:w-2/3 md:ml-11 lg:inset-48 md:w-2/3 rounded-3xl opacity-50 mt-24 h-56 w-3/4 lg:-ml-16 xl:ml-4  ">
-        <div class="flex md:w-28 xl:w-44 lg:w-36 xs:w-14 xs:m-3 items-center ml-6 bg-green-400 mt-6 rounded-xl sml:w-20 sm:m-3 sm:w-20 sml:m-3 w-44 mb-6">salim</div>
+        @if($this->profilePicture)
+            <img src="{{ asset('storage/'.$this->profilePicture) }} " class="flex md:w-28 xl:w-44 lg:w-36 xs:w-14 xs:m-3 items-center ml-6 bg-green-400 mt-6 rounded-xl sml:w-20 sm:m-3 sm:w-20 sml:m-3 w-44 mb-6" />
+        @else
+            <div class="flex md:w-28 xl:w-44 lg:w-36 xs:w-14 xs:m-3 items-center justify-center ml-6 bg-green-400 mt-6 rounded-xl sml:w-20 sm:m-3 uppercase xs:text-lg sm:text-4xl lg:text-6xl sm:w-20 sml:m-3 w-44 mb-6">{{ substr(DB::table('users')->where('id', auth()->user()->id)->value('firstname'),0,1)."".substr(DB::table('users')->where('id', auth()->user()->id)->value('surname'),0,1) }}</div>
+
+        @endif
+
+        <div class="flex flex-col">
+            <span class="flex xs:text-xs xs:mt-6 sml:text-xs sml:mt-11 md:text-xs md:mt-14 lg:mt-20 lg:text-xl text-white uppercase sm:text-xs sm:mt-9">{{ \Illuminate\Support\Facades\DB::table('users')->where('id', auth()->user()->id)->value('firstname')." ".substr(DB::table('users')->where('id', auth()->user()->id)->value('midname'),0,1)." ".DB::table('users')->where('id', auth()->user()->id)->value('surname') }}</span>
+            <span class="flex xs:text-xs xs:mt-0 sml:text-xs sml:mt-1 md:text-xs md:mt-3 lg:mt-1 italic lg:text-sm text-white lowercase sm:text-xs sm:mt-1">{{ \Illuminate\Support\Facades\DB::table('users')->where('id', auth()->user()->id)->value('role') }}</span>
+        </div>
     </div>
 
     <!-- Content div -->
@@ -50,25 +60,37 @@
                             <h3 class="mb-4  items-center flex justify-center text-white font-medium w-80 dark:text-white">Edit Profile</h3>
                             <img src="your-image.jpg" alt="Your Image" class="bg-yellow-800 rounded-full w-20 h-20">
 
-                            <form class="space-y-2 flex flex-col items-center" action="#">
+                            <form wire:submit="editProfile" class="space-y-2 flex flex-col items-center">
                                 <div class="flex flex-col gap-1">
                                     <label class="flex sm:text-xs smx:text-sm">Email</label>
-                                    <input type="text" class=" flex sm:text-xs smx:text-sm bg-gray-500 p-2 rounded-md sm:w-64 md:w-80" >
+                                    <input wire:model="email" type="text" class=" flex sm:text-xs smx:text-sm bg-gray-500 p-2 rounded-md sm:w-64 md:w-80" >
+                                    @error('email')
+                                    <span class="  text-red-400 text-xs p-2 w-64">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label class="flex sm:text-xs smx:text-sm">Phone Number</label>
-                                    <input type="number" class=" flex sm:text-xs smx:text-sm bg-gray-500 p-2 rounded-md sm:w-64 md:w-80" >
+                                    <input wire:model="phoneNumber" type="number" class=" flex sm:text-xs smx:text-sm bg-gray-500 p-2 rounded-md sm:w-64 md:w-80" >
+                                    @error('phoneNumber')
+                                    <span class="  text-red-600 text-xs p-2 w-64">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="flex flex-col gap-1">
                                     <label class="flex sm:text-xs smx:text-sm">Profile Picture</label>
-                                    <input type="file" class=" flex sm:text-xs smx:text-sm bg-gray-500rounded-md sm:w-64 md:w-80" >
+                                    <input wire:model="profilePhoto" type="file" class=" flex sm:text-xs smx:text-sm bg-gray-500rounded-md sm:w-64 md:w-80" >
+                                    @error('profilePhoto')
+                                    <span class="  text-red-600 text-xs p-2 w-64">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label class="flex sm:text-xs smx:text-sm">Description</label>
-                                    <textarea  class="flex h-12 sm:w-64 sm:text-xs smx:text-sm md:w-80 bg-gray-500 rounded-md" ></textarea>
+                                    <textarea wire:model="description" class="flex h-12 sm:w-64 sm:text-xs smx:text-sm md:w-80 bg-gray-500 rounded-md" ></textarea>
+                                    @error('description')
+                                    <span class="  text-red-600 text-xs p-2 w-64">{{ $message }}</span>
+                                    @enderror
                                 </div>
-                                <button class="bg-gray-900 sm:text-xs rounded-md p-2 smx:text-sm w-20">Edit</button>
+                                <button type="submit" class="bg-gray-700 flex items-center justify-center sm:text-xs w-32 rounded-md p-2 smx:text-sm">Save Changes</button>
                             </form>
                         </div>
                     </div>
@@ -80,58 +102,98 @@
     </div>
 
     <div class="flex gap-4 mt-40 xs:flex-col w-full sm:flex-col items-center sml:flex-col justify-evenly lg:gap-2 lg:flex-col xl:flex-row md:flex-col">
-        <div class="flex flex-col bg-green-400 xs:w-64 xs:h-64 sm:h-72 sm:w-64 w-80 sml:h-80 md:h-80 lg:h-96 h-96 mb-12 md:w-80 xl:w-80 rounded-lg lg:w-96 xl:text-lg p-3 opacity-60">
+        <div class="flex flex-col bg-white xs:w-64 xs:h-64 sm:h-72 sm:w-64 w-80 sml:h-80 md:h-80 lg:h-96 h-96 mb-12 md:w-80 xl:w-80 rounded-lg lg:w-96 xl:text-lg p-3 opacity-60">
             <span class="font-semibold md:text-xs lg:text-sm sm:text-xs xs:text-xs">Status</span>
             <div class="flex gap-24 mt-6 justify-between">
-                <div class="flex flex-col gap-3 text-sm md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">
-                    <span>User state:</span>
-                    <span>Voting state:</span>
-                    <span>Vote Number:</span>
-                    <span>Reg Number:</span>
-                    <span>{message}</span>
+                <div class="flex flex-col gap-3 w-full text-sm md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">
+                    <div class="flex w-full justify-between ">
+                        <span>User state:</span>
+                        <span class="flex  p-0.5 rounded-md">
+                            <span class="text-green-500 font-medium">Online</span>
+                            <div>
+                                <span class="relative flex h-2 w-2">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full  w-8 bg-green-400"></span>
+                               </span>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="flex w-full justify-between">
+                        <span>Voting state:</span>
+                        <span class="flex text-red-600 font-medium italic">{{ auth()->user()->voteStatus }}</span>
+                    </div>
+                    <div class="flex w-full justify-between">
+                        <span>Vote Number:</span>
+                        <span class="flex font-medium">{{ auth()->user()->voteNumber }}</span>
+                    </div>
+                    <div class="flex w-full justify-between">
+                        <span>Reg Number:</span>
+                        <span class="flex font-medium">{{ auth()->user()->regNo }}</span>
+                    </div>
+                    <span class="font-medium  p-2 rounded-md mt-6 items-center justify-center bg-red-300 flex">You have not voted yet !</span>
                 </div>
 
-               <div class="flex flex-col text-sm gap-3 items-end md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs ">
-                   <span>Online</span>
-                   <span>Not Voted</span>
-                   <span>39484847</span>
-                   <span>2021-04-06692</span>
-               </div>
+
             </div>
         </div>
         <div class="flex flex-col bg-gray-400 xs:w-64 w-80 xs:h-80 sm:h-80 sm:w-64 md:w-80 h-96 sml:h-80 mb-12 md:h-80 lg:h-96 xl:w-80 rounded-lg p-3 lg:w-96 opacity-60">
             <span class="font-semibold md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">Profile Information</span>
             <div class="flex justify-between gap-24">
-                <div class="flex flex-col gap-3 mt-6 text-sm md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">
-                    <span>First Name:</span>
-                    <span>Mid-Name:</span>
-                    <span>Surname:</span>
-                    <span>Email:</span>
-                    <span>Phone:</span>
-                    <span>Course:</span>
-                    <span>Year Of Study:</span>
+                <div class="flex flex-col gap-3 w-full mt-6 text-sm md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">
+                    <div class="flex w-full  justify-between ">
+                        <span>First Name:</span>
+                        <span class="flex font-medium">{{ auth()->user()->firstname }}</span>
+                    </div>
+                    <div class="flex w-full  justify-between ">
+                        <span>Mid-Name:</span>
+                        <span class="flex font-medium">{{ auth()->user()->midname }}</span>
+                    </div>
+                    <div class="flex w-full  justify-between ">
+                        <span>Surname:</span>
+                        <span class="flex font-medium">{{ auth()->user()->surname }}</span>
+                    </div>
+                    <div class="flex w-full justify-between ">
+                        <span>Email:</span>
+                        <span class="flex font-medium">{{ auth()->user()->email }}</span>
+                    </div>
+                    <div class="flex w-full justify-between ">
+                        <span>Phone:</span>
+                        <span class="flex font-medium">{{ auth()->user()->phoneNumber }}</span>
+                    </div>
+                    <div class="flex w-full justify-between ">
+                        <span>Programme:</span>
+                        <span class="flex font-medium">{{ auth()->user()->programme }}</span>
+                    </div>
+                    <div class="flex w-full justify-between ">
+                        <span>Year Of Study:</span>
+                        <span class="flex font-medium">{{ auth()->user()->yearOfStudy }}</span>
+                    </div>
                 </div>
 
-                <div class="flex flex-col gap-3 mt-6 text-sm items-end md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">
-                    <span>First Name:</span>
-                    <span>Mid-Name:</span>
-                    <span>Surname:</span>
-                    <span>Email:</span>
-                    <span>Phone:</span>
-                    <span>Course:</span>
-                    <span>Year Of Study:</span>
-                </div>
             </div>
             <div class="flex flex-col text-sm mt-3 gap-1">
-                <span class="md:text-xs mb-2  sml:text-xs sm:text-xs xs:text-xs">Description:</span>
-                <textarea type="text" class="flex p-2  xs:h-8 xs:-mt-2 rounded-md sm:h-8 bg-gray-3 00 md:p-1 smx:-mt-2 sm:-mt-2 sml:-mt-2 sml:h-8 md:-mt-2  md:h-8 lg:h-16 lg:mt-1" disabled></textarea>
+                <span class="md:text-xs mb-4 lg:text-sm lg:mb-1  sml:text-xs sm:text-xs xs:text-xs">Description:</span>
+                <textarea type="text" class="flex p-2 xs:text-xs lg:text-sm italic  xs:h-8 xs:-mt-2 rounded-md sm:h-8 bg-gray-3 00 md:p-2 smx:-mt-2 sm:-mt-2 sml:-mt-2 sml:h-8 md:-mt-2 font-medium md:h-8 lg:h-16 lg:mt-1" disabled>{{ auth()->user()->description }}</textarea>
             </div>
 
         </div>
         <div class="flex flex-col bg-red-400 w-80 h-96 xs:h-64 xs:w-64 md:w-80 mb-12 sm:w-64 sm:h-72 sml:h-80 md:h-80 lg:h-96 xl:w-80 rounded-lg p-3 lg:w-96 opacity-60">
-            <span class="font-semibold md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">Conversations</span>
-            <div class="flex flex-col mt-32 ml-8 italic text-sm md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">
-                There are currently no conversations
+            <span class="font-semibold md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">Voting Slots</span>
+            <div class="flex flex-col mt-6 gap-3 italic text-sm md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">
+                <div class="flex w-full justify-between ">
+                    <span >Total slots:</span>
+                    <span class="flex font-medium">6</span>
+                </div>
+                <div class="flex w-full justify-between ">
+                    <span>Completed slots:</span>
+                    <span class="flex font-medium">4</span>
+                </div>
+                <div class="flex w-full justify-between ">
+                    <span>Incomplete slots:</span>
+                    <span class="flex font-medium">2</span>
+                </div>
+
+
             </div>
         </div>
     </div>

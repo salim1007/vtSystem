@@ -55,5 +55,11 @@
         @endif
     </div>
 
+
+    <x-notifications position="top-center" />
+
+
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+

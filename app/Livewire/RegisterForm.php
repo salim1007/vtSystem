@@ -45,7 +45,7 @@ class RegisterForm extends Component
         ]);
 
         if($this->profilePic){
-            $this->path = $this->profilePic->store('userProfilePics');
+            $this->path = $this->profilePic->store('userImages','public');
         }else{
             $this->path = '';
         }
@@ -63,7 +63,7 @@ class RegisterForm extends Component
             'phoneNumber'=>$this->phoneNumber,
             'voteNumber'=>$this->voteNumber,
             'photoUrl'=>$this->path,
-            'programme'=>$this->course,
+            'programme'=>$this->programme,
             'yearOfStudy'=>$this->yearOfStudy,
         ]);
 
