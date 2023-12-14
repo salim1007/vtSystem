@@ -21,11 +21,20 @@
 
 
 <!-- component -->
-<div  class="flex w-screen">
+<div  class="flex flex-col w-screen">
 
         <livewire:dynamic-view/>
+    <footer class="flex xs:text-xs  p-3 bg-gray-400">
+        <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
+    </footer>
+
 
 </div>
 @stack('js')
 </body>
+
+<script>
+    const currentYear = new Date().getFullYear();
+    document.getElementById('currentYear').textContent = currentYear;
+</script>
 </html>

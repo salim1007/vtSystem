@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('college');
             $table->string('programme');
             $table->string('yearOfStudy');
-            $table->string('role')->default('voter');
-            $table->string('voteStatus')->default('Not Voted');
-            $table->string('description')->default("Hey there, I'm here to vote...");
+            $table->string('role');
+            $table->string('voteStatus');
+            $table->text('description');
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

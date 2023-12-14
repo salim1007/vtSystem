@@ -1,11 +1,11 @@
 <div  class=" w-full h-full flex flex-col">
-    @vite('resources/css/app.css')
-    <div class="h-14 pl-4 mb-4 flex w-full items-center justify-end p-2 xs:text-xs bg-green-500">
+    <div class="h-14 pl-4 mb-4 flex w-full justify-between items-center p-2 xs:text-xs bg-green-500">
+        <span class="flex font-medium text-lg">Dashboard</span>
         <button wire:click="logout" class="" >
             <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 16L21 12M21 12L17 8M21 12L7 12M13 16V17C13 18.6569 11.6569 20 10 20H6C4.34315 20 3 18.6569 3 17V7C3 5.34315 4.34315 4 6 4H10C11.6569 4 13 5.34315 13 7V8" stroke="#374151" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
         </button>
     </div>
-    <span class="flex pl-4 font-medium mb-8 xs:text-xs">Welcome { Admin }</span>
+    <span class="flex pl-4 font-medium lg:text-sm text-gray-300 mb-4 xs:text-xs">Welcome Admin, {{ \Illuminate\Support\Facades\DB::table('users')->where('role', 'admin')->value('firstname') }} </span>
     <div class="flex bg-pink-600 gap-4 justify-start p-3">
         <div class="p-2 xs:text-xs bg-blue-300 font-medium justify-between gap-6 w-44 flex flex-col rounded-md">
             <span>Total Posts</span>
@@ -82,6 +82,7 @@
                     </td>
 
                 </tr>
+
 
                 </tbody>
             </table>

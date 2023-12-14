@@ -59,6 +59,9 @@ class RegisterForm extends Component
             'college'=>$this->college,
             'password'=>Hash::make($this->password),
             'email'=>$this->email,
+            'role'=>'voter',
+            'voteStatus'=>'Not Voted',
+            'description'=>"Hey there, I'm here to vote...",
             'regNo'=>$this->regNo,
             'phoneNumber'=>$this->phoneNumber,
             'voteNumber'=>$this->voteNumber,
@@ -70,6 +73,7 @@ class RegisterForm extends Component
 
         $this->reset('firstname','midname','phoneNumber','username','college','regNo','surname','profilePic','password','confirmPassword','email','voteNumber','programme','yearOfStudy');
         session()->flash('success','Successfully registered');
+        return redirect()->to('/login');
 
     }
     public function render()
