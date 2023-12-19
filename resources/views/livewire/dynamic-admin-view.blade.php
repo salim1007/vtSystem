@@ -35,7 +35,7 @@
 
 
     </div>
-    <div class="flex justify-center w-full bg-slate-600 ">
+    <div class="flex justify-center w-full bg-slate-600  ">
         @if(session()->get('vali') == 'dashboard')
             <livewire:admin-pages.admin-dashboard />
         @elseif(session()->get('vali') == 'createPosts')
@@ -50,6 +50,7 @@
             <livewire:admin-pages.admin-mailbox />
         @endif
     </div>
+
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

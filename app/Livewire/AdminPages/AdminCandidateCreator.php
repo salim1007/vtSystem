@@ -20,6 +20,22 @@ class AdminCandidateCreator extends Component
     public $programme;
     public $college;
     public $description;
+    public $upload_reg_no;
+    public $candidate_name;
+
+    public function findCandidate(){
+        $validated = $this->validate([
+            'upload_reg_no' => 'required'
+        ]);
+
+        $user_reg_no = Candidate::where('reg_no', $this->upload_reg_no)->first();
+        if($user_reg_no){
+            $this->candidate_name = $user_reg_no->full_name;
+        }else{
+            session()->flash('error','Candidate not found!');
+        }
+    }
+
 
     public function createCandidate(){
         $validated = $this->validate([
@@ -28,7 +44,7 @@ class AdminCandidateCreator extends Component
             'college'=>'required',
             'programme'=>'required',
             'description'=>'required',
-            'post'=>'required'
+            'post'=>'required',
         ]);
 
         $post_name = Post::where('post_code', $this->post)->value('post_title');
@@ -36,6 +52,7 @@ class AdminCandidateCreator extends Component
 
         if(Candidate::where('reg_no', $this->reg_number)->exists()){
             session()->flash('info','Candidate already exists!!');
+            dd('exists');
 
         }else{
             Candidate::create([

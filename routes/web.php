@@ -32,6 +32,9 @@ Route::get('/userProfile', function () {
     return view('user');
 });
 
+
+//admin routes here..........
+
 Route::get('/dashboard', function () {
     $token = session()->get('jwt_token');
     session()->put('vali','dashboard');
@@ -62,6 +65,57 @@ Route::get('/mailbox', function () {
     $token = session()->get('jwt_token');
     session()->put('vali','mailbox');
     return view('adminview', ['token' => $token]);
+});
+
+
+
+//user routes here.........
+
+
+Route::get('/profile', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','profile');
+    return view('viewchanger', ['token' => $token]);
+});
+Route::get('/candidates', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','candidates');
+    return view('viewchanger', ['token' => $token]);
+});
+Route::get('/how_to', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','how_to');
+    return view('viewchanger', ['token' => $token]);
+});
+Route::get('/vote', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','vote');
+    return view('viewchanger', ['token' => $token]);
+});
+Route::get('/chatroom', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','chatroom');
+    return view('viewchanger', ['token' => $token]);
+});
+Route::get('/results', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','results');
+    return view('viewchanger', ['token' => $token]);
+});
+Route::get('/mail', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','mail');
+    return view('viewchanger', ['token' => $token]);
+});
+Route::get('/privacy_policy', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','privacy_policy');
+    return view('viewchanger', ['token' => $token]);
+});
+Route::get('/terms_of_service', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','terms_of_service');
+    return view('viewchanger', ['token' => $token]);
 });
 
 

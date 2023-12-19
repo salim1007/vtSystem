@@ -1,4 +1,4 @@
-<div  class=" w-full h-full flex flex-col">
+<div  class=" w-full h-full flex flex-col ">
     <div class="h-14 pl-4 mb-4 flex w-full justify-between items-center p-2 xs:text-xs bg-green-500">
         <span class="flex font-medium text-lg">Dashboard</span>
         <button wire:click="logout" class="" >

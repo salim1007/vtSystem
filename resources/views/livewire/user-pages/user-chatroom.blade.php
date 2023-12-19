@@ -1,4 +1,4 @@
-<div class=" flex flex-col w-full h-full ">
+<div class=" flex flex-col w-full h-screen ">
     <div class=" flex h-16 items-center justify-center gap-2 bg-green-400">
         <input type="search" class="rounded-xl" placeholder="Search Name..." />
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 30 30">
@@ -8,64 +8,56 @@
 
 
     <div class="py-4 relative flex flex-grow flex-col px-10 justify-start" style="background-color:#e5ddd5;">
-        <span class="mb-28 rounded-3xl shadow-lg bg-blue-400 w-fit p-2">Have a little chat with your fellows </span>
+        <span class="mb-6 text-sm rounded-3xl shadow-lg bg-blue-400 w-fit p-3">Have a little chat with your fellows</span>
 
-        <div
-            class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
-            <p class="">Do you still have that car from gone in 60 seconds? Can I borrow it please.</p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
-        </div>
-        <div class="mr-auto rounded-lg rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
-            <p>Yeah dude for sure</p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:45 AM</p>
-        </div>
-        <div
-            class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
-            <p class="">Dude WTF was up with that plane you were on!!!?</p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
-        </div>
-        <div class="mr-auto rounded-lg rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
-            <p>LOL I Know right </p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:45 AM</p>
-        </div>
-        <div
-            class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
-            <p class="">Hey man what should we do this weekend?</p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
-        </div>
-        <div class="mr-auto rounded-lg rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
-            <p>Steal the declaration of independence?...</p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:45 AM</p>
-        </div>
-        <div
-            class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
-            <p class="">Do you still have that car from gone in 60 seconds? Can I borrow it please.</p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
-        </div>
-        <div class="mr-auto rounded-lg rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
-            <p>Yeah dude for sure</p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:45 AM</p>
-        </div>
-        <div
-            class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
-            <p class="">Dude WTF was up with that plane you were on!!!?</p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
-        </div>
-        <div class="mr-auto rounded-lg rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
-            <p>LOL I Know right </p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:45 AM</p>
-        </div>
-        <div
-            class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
-            <p class="">Hey man what should we do this weekend?</p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
-        </div>
-        <div class="mr-auto rounded-lg rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
-            <p>Steal the declaration of independence?...</p>
-            <p class="text-gray-600 text-xs text-right leading-none">8:45 AM</p>
-        </div>
+       <div class="flex flex-col  p-2  overflow-x-hidden scrollbar-hidden rounded-md h-96 overflow-y-auto ">
+           <div
+               class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
+               <p class="">Do you still have that car from gone in 60 seconds? Can I borrow it please.</p>
+               <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
+           </div>
+           <div class="mr-auto rounded-lg rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
+               <p>Yeah dude for sure</p>
+               <p class="text-gray-600 text-xs text-right leading-none">8:45 AM</p>
+           </div>
+           <div
+               class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
+               <p class="">Dude WTF was up with that plane you were on!!!?</p>
+               <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
+           </div>
+           <div
+               class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
+               <p class="">Do you still have that car from gone in 60 seconds? Can I borrow it please.</p>
+               <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
+           </div>
+           <div class="mr-auto rounded-lg rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
+               <p>Yeah dude for sure</p>
+               <p class="text-gray-600 text-xs text-right leading-none">8:45 AM</p>
+           </div>
+           <div
+               class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
+               <p class="">Dude WTF was up with that plane you were on!!!?</p>
+               <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
+           </div>
+           <div
+               class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
+               <p class="">Do you still have that car from gone in 60 seconds? Can I borrow it please.</p>
+               <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
+           </div>
+           <div class="mr-auto rounded-lg rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
+               <p>Yeah dude for sure</p>
+               <p class="text-gray-600 text-xs text-right leading-none">8:45 AM</p>
+           </div>
+           <div
+               class="ml-auto rounded-lg rounded-tr-none my-1 p-2 text-sm bg-green-300 flex flex-col relative speech-bubble-right">
+               <p class="">Dude WTF was up with that plane you were on!!!?</p>
+               <p class="text-gray-600 text-xs text-right leading-none">8:00 AM</p>
+           </div>
 
-        <div class="flex flex-row items-center justify-end w-full gap-1 mr-4 mt-64">
+
+       </div>
+
+        <div class="flex flex-row items-center justify-end w-full gap-1 mr-4 mt-8">
             <div class="flex items-center h-20 w-full">
                 <textarea type="text" class="rounded-xl items-center flex w-full p-2"></textarea>
             </div>

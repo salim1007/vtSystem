@@ -90,10 +90,23 @@
         <div class="flex flex-col w-full items-center">
             <span class="text-sm w-full  font-medium text-white  dark:text-white bg-amber-100  flex items-center justify-center p-3 shadow-lg mb-8">Candidate Accessories</span>
             <div class="">
-                    <div class="relative z-0 mb-20 xs:w-52 sm:w-72 smx:w-96 group">
-                        <input wire:model.debounce.200ms="reg_no" type="number" name="reg_no" id="reg_no" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
-                        <label for="reg_no" class="peer-focus:font-medium absolute text-sm text-blue-300 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto xs:text-xs peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter Registration Number</label>
-                    </div>
+                    <form wire:submit="findCandidate">
+                        <div class="relative z-0 mb-20 xs:w-52 sm:w-72 smx:w-96 group">
+                            <input wire:model="upload_reg_no" autocomplete="off" type="text" name="upload_reg_no" id="upload_reg_no" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
+                            <label for="upload_reg_no" class="peer-focus:font-medium absolute text-sm text-blue-300 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto xs:text-xs peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter Registration Number</label>
+                            <button type="submit" class="xs:text-xs md:text-xs rounded-md bg-blue-400 p-1 mt-2">Populate data</button>
+                            @if(session()->has('error'))
+                                <span class=" rounded-md  text-red-400 text-xs p-2 w-64">{{ session('error') }}</span>
+                            @endif
+                            @error('upload_reg_no')
+                            <span class=" rounded-md  text-red-400 text-xs p-2 w-64">Registration number is required</span>
+                            @enderror
+                            @if($this->candidate_name)
+                                <span class="flex bg-gray-400 mt-6 rounded-md text-sm p-1 italic"> {{$this->candidate_name }}</span>
+                            @endif
+                        </div>
+                    </form>
+
             </div>
 
             <div class="flex w-full p-6 ">

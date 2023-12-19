@@ -30,7 +30,7 @@ class LoginForm extends Component
                 return redirect()->to('/dashboard');
 
             }elseif (auth()->user()->role == 'voter'){
-                return redirect()->to('/dynamic');
+                return redirect()->to('/profile');
             }
 
 
