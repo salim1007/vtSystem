@@ -7,10 +7,13 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AdminCandidateCreator extends Component
 {
+    use WithFileUploads;
     public $reg_number;
     public $profile_pic;
     public $reg_no;
@@ -22,6 +25,21 @@ class AdminCandidateCreator extends Component
     public $description;
     public $upload_reg_no;
     public $candidate_name;
+
+    #[Rule('required')]
+    #[Rule(['images.*' => 'required|image|max:2048'])]
+    public $images;
+    public $image_path;
+
+    public function uploadCandidatePhoto(){
+        $this->validateOnly('images');
+        if (is_array($this->images)) {
+            foreach ($this->images as $image) {
+                $image->store('candidateImages', 'public');
+            }
+        }
+
+    }
 
     public function findCandidate(){
         $validated = $this->validate([
@@ -35,6 +53,7 @@ class AdminCandidateCreator extends Component
             session()->flash('error','Candidate not found!');
         }
     }
+
 
 
     public function createCandidate(){

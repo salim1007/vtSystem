@@ -91,10 +91,10 @@
             <span class="text-sm w-full  font-medium text-white  dark:text-white bg-amber-100  flex items-center justify-center p-3 shadow-lg mb-8">Candidate Accessories</span>
             <div class="">
                     <form wire:submit="findCandidate">
-                        <div class="relative z-0 mb-20 xs:w-52 sm:w-72 smx:w-96 group">
+                        <div class="relative flex-col flex z-0 mb-20 xs:w-52 sm:w-72 smx:w-96 group">
                             <input wire:model="upload_reg_no" autocomplete="off" type="text" name="upload_reg_no" id="upload_reg_no" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
                             <label for="upload_reg_no" class="peer-focus:font-medium absolute text-sm text-blue-300 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto xs:text-xs peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter Registration Number</label>
-                            <button type="submit" class="xs:text-xs md:text-xs rounded-md bg-blue-400 p-1 mt-2">Populate data</button>
+                            <button type="submit" class="xs:text-xs w-fit md:text-xs rounded-md bg-blue-400 p-1 mt-2">Populate data</button>
                             @if(session()->has('error'))
                                 <span class=" rounded-md  text-red-400 text-xs p-2 w-64">{{ session('error') }}</span>
                             @endif
@@ -102,7 +102,10 @@
                             <span class=" rounded-md  text-red-400 text-xs p-2 w-64">Registration number is required</span>
                             @enderror
                             @if($this->candidate_name)
-                                <span class="flex bg-gray-400 mt-6 rounded-md text-sm p-1 italic"> {{$this->candidate_name }}</span>
+                                <div class="flex flex-col text-sm mt-8 gap-1 ">
+                                    <span class="text-gray-300">Candidate name:</span>
+                                    <span class="flex bg-gray-400 w-fit font-medium rounded-md text-sm p-1 italic"> {{$this->candidate_name }}</span>
+                                </div>
                             @endif
                         </div>
                     </form>
@@ -110,12 +113,21 @@
             </div>
 
             <div class="flex w-full p-6 ">
-                <div class="flex flex-col w-fit bg-gray-400 p-3 rounded-lg mb-8">
-                    <form class="relative z-0 w-full mb-5 group">
-                        <label class="block mb-2  text-sm font-medium text-white dark:text-white" for="user_avatar">Upload Photos</label>
-                        <input class="block w-full xs:w-44 sm:w-64 smx:w-96 text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
-                        <div class="bg-red-500 xs:text-xs rounded-md p-1 text-white flex w-full inline-grid grid-cols-3 gap-4 mt-8">
-                            Display multiple photos here
+                <div class="flex flex-col w-fit bg-gray-400 sm:w-full p-3 rounded-lg mb-8">
+                    <form wire:submit="uploadCandidatePhoto" class="relative z-0 w-full mb-5 group">
+                        <label class="block mb-2  text-sm font-medium text-white dark:text-white" for="user_avatar">Upload Photos for:<i class="text-black">{{"  ".$this->candidate_name }}</i></label>
+                        <input multiple wire:model="images" accept="image/png, image/jpeg"  class="block text-black w-full xs:w-44 sm:w-64 smx:w-96 text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="images" name="images" type="file">
+                        @error('images')
+                            <span class="flex text-red-400 text-sm">{{ $message }}</span>
+
+                        @enderror
+                        <div class="flex w-full mt-4 sml:inline-grid sml:grid-cols-6 smx:inline-grid smx:grid-cols-3 xs:inline-grid xs:grid-cols-1 sm:grid-cols-2 gap-4 ">
+                            @if($this->images)
+                                @foreach($this->images as $image)
+                                    <img class=" rounded-md w-20 h-20" src="{{ $image->temporaryUrl() }}"  />
+
+                                @endforeach
+                            @endif
                         </div>
                         <button type="submit" class="xs:text-xs p-2 rounded-md bg-blue-400 mt-6">
                             Upload
@@ -125,32 +137,32 @@
             </div>
 
             <div class="flex w-full p-6 ">
-                <div class="flex flex-col w-fit bg-gray-400 p-3 rounded-lg mb-8">
+                <div class="flex flex-col w-full bg-gray-400 p-3 rounded-lg mb-8">
                     <form class="relative z-0 w-full mb-5 group">
                         <label class="block mb-2 text-sm font-medium text-white dark:text-white" for="user_avatar">Upload Videos</label>
                         <input class="block w-full xs:w-44 sm:w-64 smx:w-96 text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
 
                         <div class="flex w-full  sml:inline-grid sml:grid-cols-3 smx:inline-grid smx:grid-cols-2 xs:inline-grid xs:grid-cols-1 gap-4">
-                            <video class=" w-full mt-4 rounded-md" controls>
-                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <video class=" w-full mt-4 rounded-md" controls>
-                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <video class=" w-full mt-4 rounded-md" controls>
-                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <video class=" w-full mt-4 rounded-md" controls>
-                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <video class=" w-full mt-4 rounded-md" controls>
-                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+{{--                            <video class=" w-full mt-4 rounded-md" controls>--}}
+{{--                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">--}}
+{{--                                Your browser does not support the video tag.--}}
+{{--                            </video>--}}
+{{--                            <video class=" w-full mt-4 rounded-md" controls>--}}
+{{--                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">--}}
+{{--                                Your browser does not support the video tag.--}}
+{{--                            </video>--}}
+{{--                            <video class=" w-full mt-4 rounded-md" controls>--}}
+{{--                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">--}}
+{{--                                Your browser does not support the video tag.--}}
+{{--                            </video>--}}
+{{--                            <video class=" w-full mt-4 rounded-md" controls>--}}
+{{--                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">--}}
+{{--                                Your browser does not support the video tag.--}}
+{{--                            </video>--}}
+{{--                            <video class=" w-full mt-4 rounded-md" controls>--}}
+{{--                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">--}}
+{{--                                Your browser does not support the video tag.--}}
+{{--                            </video>--}}
                         </div>
 
                         <button type="submit" class="xs:text-xs p-2 rounded-md bg-blue-400 mt-6">
