@@ -3,6 +3,7 @@
 namespace App\Livewire\AdminPages;
 
 use App\Models\Candidate;
+use App\Models\CandidatePhoto;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,9 @@ class AdminCandidateCreator extends Component
     public $college;
     public $description;
     public $upload_reg_no;
+    public $upload_reg_no2;
     public $candidate_name;
+    public $candidate_name2;
 
     #[Rule('required')]
     #[Rule(['images.*' => 'required|image|max:2048'])]
@@ -33,11 +36,22 @@ class AdminCandidateCreator extends Component
 
     public function uploadCandidatePhoto(){
         $this->validateOnly('images');
-        if (is_array($this->images)) {
-            foreach ($this->images as $image) {
-                $image->store('candidateImages', 'public');
+
+            if (is_array($this->images)) {
+                foreach ($this->images as $image) {
+                    $this->image_path = $image->store('candidateImages', 'public');
+
+                    CandidatePhoto::create([
+                        'reg_no' => $this->upload_reg_no,
+                        'photo_url' => $this->image_path
+                    ]);
+                }
             }
-        }
+
+        $this->images = null;
+        $this->upload_reg_no = null;
+        $this->candidate_name = null;
+        session()->flash('success', 'Photos uploaded successfully!');
 
     }
 
@@ -49,6 +63,19 @@ class AdminCandidateCreator extends Component
         $user_reg_no = Candidate::where('reg_no', $this->upload_reg_no)->first();
         if($user_reg_no){
             $this->candidate_name = $user_reg_no->full_name;
+        }else{
+            session()->flash('error','Candidate not found!');
+        }
+    }
+
+    public function findCandidate2(){
+        $validated = $this->validate([
+            'upload_reg_no2' => 'required'
+        ]);
+
+        $user_reg_no2 = Candidate::where('reg_no', $this->upload_reg_no2)->first();
+        if($user_reg_no2){
+            $this->candidate_name2 = $user_reg_no2->full_name;
         }else{
             session()->flash('error','Candidate not found!');
         }

@@ -6,7 +6,7 @@
         </button>
     </div>
     <div class="flex flex-col items-center">
-        <span class="text-sm mx font-medium text-white dark:text-white bg-amber-100 w-full flex items-center justify-center p-3 shadow-lg mb-8">Create Candidate</span>
+        <span class="text-sm mx font-medium text-black dark:text-white bg-amber-100 w-full flex items-center justify-center p-3 shadow-lg mb-8">Create Candidate</span>
         <div class="">
 
             <div class="relative z-0 mb-12 xs:w-52 sm:w-72 smx:w-96 group">
@@ -88,7 +88,7 @@
 
         </div>
         <div class="flex flex-col w-full items-center">
-            <span class="text-sm w-full  font-medium text-white  dark:text-white bg-amber-100  flex items-center justify-center p-3 shadow-lg mb-8">Candidate Accessories</span>
+            <span class="text-sm w-full  font-medium text-black  dark:text-white bg-amber-100  flex items-center justify-center p-3 shadow-lg mb-8">Upload Photo(s)</span>
             <div class="">
                     <form wire:submit="findCandidate">
                         <div class="relative flex-col flex z-0 mb-20 xs:w-52 sm:w-72 smx:w-96 group">
@@ -117,14 +117,14 @@
                     <form wire:submit="uploadCandidatePhoto" class="relative z-0 w-full mb-5 group">
                         <label class="block mb-2  text-sm font-medium text-white dark:text-white" for="user_avatar">Upload Photos for:<i class="text-black">{{"  ".$this->candidate_name }}</i></label>
                         <input multiple wire:model="images" accept="image/png, image/jpeg"  class="block text-black w-full xs:w-44 sm:w-64 smx:w-96 text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="images" name="images" type="file">
-                        @error('images')
+                        @error('images.*')
                             <span class="flex text-red-400 text-sm">{{ $message }}</span>
 
                         @enderror
-                        <div class="flex w-full mt-4 sml:inline-grid sml:grid-cols-6 smx:inline-grid smx:grid-cols-3 xs:inline-grid xs:grid-cols-1 sm:grid-cols-2 gap-4 ">
+                        <div class="flex w-full mt-4 sml:inline-grid sml:grid-cols-3 smx:inline-grid smx:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xs:inline-grid xs:grid-cols-1 sm:grid-cols-2 gap-4 ">
                             @if($this->images)
                                 @foreach($this->images as $image)
-                                    <img class=" rounded-md w-20 h-20" src="{{ $image->temporaryUrl() }}"  />
+                                    <img class=" rounded-md w-44 h-44" src="{{ $image->temporaryUrl() }}"  />
 
                                 @endforeach
                             @endif
@@ -134,6 +134,31 @@
                         </button>
                     </form>
                 </div>
+            </div>
+            <span class="text-sm w-full  font-medium text-black  dark:text-white bg-amber-100  flex items-center justify-center p-3 shadow-lg mb-8">Upload Video(s)</span>
+
+
+            <div class="">
+                <form wire:submit="findCandidate2">
+                    <div class="relative flex-col flex z-0 mb-20 xs:w-52 sm:w-72 smx:w-96 group">
+                        <input wire:model="upload_reg_no2" autocomplete="off" type="text" name="upload_reg_no2" id="upload_reg_no2" class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "  />
+                        <label for="upload_reg_no2" class="peer-focus:font-medium absolute text-sm text-blue-300 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto xs:text-xs peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter Registration Number</label>
+                        <button type="submit" class="xs:text-xs w-fit md:text-xs rounded-md bg-blue-400 p-1 mt-2">Populate data</button>
+                        @if(session()->has('error'))
+                            <span class=" rounded-md  text-red-400 text-xs p-2 w-64">{{ session('error') }}</span>
+                        @endif
+                        @error('upload_reg_no2')
+                        <span class=" rounded-md  text-red-400 text-xs p-2 w-64">Registration number is required</span>
+                        @enderror
+                        @if($this->candidate_name2)
+                            <div class="flex flex-col text-sm mt-8 gap-1 ">
+                                <span class="text-gray-300">Candidate name:</span>
+                                <span class="flex bg-gray-400 w-fit font-medium rounded-md text-sm p-1 italic"> {{$this->candidate_name2 }}</span>
+                            </div>
+                        @endif
+                    </div>
+                </form>
+
             </div>
 
             <div class="flex w-full p-6 ">
