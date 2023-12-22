@@ -26,6 +26,7 @@
                    @enderror
                </form>
             </div>
+            <span>{{ $this->received_ID }}</span>
 
             <form wire:submit="createCandidate" class="max-w-md items-center flex flex-col mx-auto">
                 @if($this->profile_pic)
@@ -163,31 +164,25 @@
 
             <div class="flex w-full p-6 ">
                 <div class="flex flex-col w-full bg-gray-400 p-3 rounded-lg mb-8">
-                    <form class="relative z-0 w-full mb-5 group">
+                    <form wire:submit="uploadCandidateVideo" class="relative z-0 w-full mb-5 group">
                         <label class="block mb-2 text-sm font-medium text-white dark:text-white" for="user_avatar">Upload Videos</label>
-                        <input class="block w-full xs:w-44 sm:w-64 smx:w-96 text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                        <input multiple wire:model="videos" class="block w-full xs:w-44 sm:w-64 smx:w-96 text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                        @error('videos.*')
+                        <span class="flex text-red-400 text-sm">{{ $message }}</span>
+
+                        @enderror
 
                         <div class="flex w-full  sml:inline-grid sml:grid-cols-3 smx:inline-grid smx:grid-cols-2 xs:inline-grid xs:grid-cols-1 gap-4">
-{{--                            <video class=" w-full mt-4 rounded-md" controls>--}}
-{{--                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">--}}
-{{--                                Your browser does not support the video tag.--}}
-{{--                            </video>--}}
-{{--                            <video class=" w-full mt-4 rounded-md" controls>--}}
-{{--                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">--}}
-{{--                                Your browser does not support the video tag.--}}
-{{--                            </video>--}}
-{{--                            <video class=" w-full mt-4 rounded-md" controls>--}}
-{{--                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">--}}
-{{--                                Your browser does not support the video tag.--}}
-{{--                            </video>--}}
-{{--                            <video class=" w-full mt-4 rounded-md" controls>--}}
-{{--                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">--}}
-{{--                                Your browser does not support the video tag.--}}
-{{--                            </video>--}}
-{{--                            <video class=" w-full mt-4 rounded-md" controls>--}}
-{{--                                <source src="/docs/videos/flowbite.mp4" type="video/mp4">--}}
-{{--                                Your browser does not support the video tag.--}}
-{{--                            </video>--}}
+                            @if($this->videos)
+                                @foreach($this->videos as $video)
+                                    <video class=" w-full mt-4 rounded-md" controls>
+                                        <source src="{{ $video->temporaryUrl() }}" type="video/mp4">
+
+                                    </video>
+
+                                @endforeach
+                            @endif
+
                         </div>
 
                         <button type="submit" class="xs:text-xs p-2 rounded-md bg-blue-400 mt-6">

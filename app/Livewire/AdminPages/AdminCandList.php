@@ -2,11 +2,16 @@
 
 namespace App\Livewire\AdminPages;
 
+use App\Models\Candidate;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AdminCandList extends Component
 {
+    use WithPagination;
+    public $search;
     public function logout(){
         Auth::logout();
 
@@ -16,8 +21,16 @@ class AdminCandList extends Component
 
 
     }
+
+
     public function render()
     {
-        return view('livewire.admin-pages.admin-cand-list');
+        $candidate_details = Candidate::latest()->where(function ($query){
+            $query->where('full_name','like',"%{$this->search}%")
+                ->orWhere('reg_no','like',"%{$this->search}%");
+        })->paginate(10);
+        return view('livewire.admin-pages.admin-cand-list',[
+            'candidates' => $candidate_details
+        ]);
     }
 }

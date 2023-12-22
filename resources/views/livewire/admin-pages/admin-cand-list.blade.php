@@ -8,7 +8,7 @@
     <div class="flex w-full flex-col bg-green-200 h-full">
         <span class="flex font-medium bg-red-50 p-3">Candidates List</span>
         <div class="p-3">
-            <input type="search" class="flex p-2 rounded-xl w-64 h-8 text-xs" placeholder="Search name..." />
+            <input wire:model.live.debounce.200ms="search" type="search" id="search" name="search" class="flex p-2 rounded-xl w-64 h-8 text-xs" placeholder="Search by: name, reg_number" />
         </div>
         <div class="flex flex-col bg-amber-100 p-4 h-full">
             <div class="relative overflow-x-auto xs:rounded-lg shadow-md sm:rounded-lg">
@@ -28,6 +28,9 @@
                             post
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            programme
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             college
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -38,33 +41,39 @@
                         </th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 flex items-center justify-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <img src="" alt="salim_pic" class="h-20 w-20" />
-                        </th>
-                        <td class="px-6 py-4">
-                            Salim Iddi Mchomvu
-                        </td>
-                        <td class="px-6 py-4">
-                            2021-04-06692
-                        </td>
-                        <td class="px-6 py-4">
-                            Chairperson
-                        </td>
-                        <td class="px-6 py-4">
-                            CoICT
-                        </td>
-                        <td class="px-6 py-4">
-                            II
-                        </td>
-                        <th scope="col" class="px-6 py-3">
-                            <button class="flex p-2 items-center justify-center rounded-md bg-blue-400 text-white w-16">Edit</button>
-                        </th>
+                    @foreach($candidates as $candidate)
+                        <tbody>
+                        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row" class="px-2 py-4 flex items-center justify-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <img src="{{ asset('storage/'.$candidate->photo_url) }}" alt="" class="h-20 w-20 rounded-lg" />
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $candidate->full_name }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $candidate->reg_no }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $candidate->post }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $candidate->programme }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $candidate->college }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $candidate->year }}
+                            </td>
+                            <th scope="col" class="px-6 py-3">
+                                <button wire:click.prevent="gotoEditPage({{ $candidate->id }})" class="flex p-2 items-center justify-center rounded-md bg-blue-400 text-white w-16">Edit</button>
+                            </th>
 
-                    </tr>
+                        </tr>
 
-                    </tbody>
+                        </tbody>
+                    @endforeach
+
                 </table>
             </div>
         </div>

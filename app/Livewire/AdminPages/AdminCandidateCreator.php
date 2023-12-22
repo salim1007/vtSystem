@@ -4,10 +4,13 @@ namespace App\Livewire\AdminPages;
 
 use App\Models\Candidate;
 use App\Models\CandidatePhoto;
+use App\Models\CandidateVideo;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -30,12 +33,20 @@ class AdminCandidateCreator extends Component
     public $candidate_name2;
 
     #[Rule('required')]
-    #[Rule(['images.*' => 'required|image|max:2048'])]
+    #[Rule(['images.*' => 'image|max:2048'])]
     public $images;
+    #[Rule('required')]
+    #[Rule(['videos.*' =>'required|file|mimetypes:video/mp4|max:102400'])]
+    public $videos;
     public $image_path;
+    public $video_path;
+
+    public $received_ID;
+
 
     public function uploadCandidatePhoto(){
         $this->validateOnly('images');
+        if($this->upload_reg_no) {
 
             if (is_array($this->images)) {
                 foreach ($this->images as $image) {
@@ -48,10 +59,42 @@ class AdminCandidateCreator extends Component
                 }
             }
 
-        $this->images = null;
-        $this->upload_reg_no = null;
-        $this->candidate_name = null;
-        session()->flash('success', 'Photos uploaded successfully!');
+
+            $this->images = null;
+            $this->upload_reg_no = null;
+            $this->candidate_name = null;
+            session()->flash('success', 'Photos uploaded successfully!');
+        }else{
+            session()->flash('reg_no_not_found','The registration number is required!');
+        }
+
+    }
+
+    public function uploadCandidateVideo(Request $request){
+        $this->validateOnly('videos');
+        if($this->upload_reg_no2) {
+            if (is_array($this->videos)) {
+                foreach ($this->videos as $video) {
+                    $this->video_path = $video->store('CandidateVideos', 'public');
+
+                   CandidateVideo::create([
+                        'video_url' => $this->video_path,
+                        'reg_no' => $this->upload_reg_no2
+                    ]);
+
+                }
+
+            }
+
+
+            $this->upload_reg_no2 = null;
+            $this->video = null;
+
+            session()->flash('success', 'Videos uploaded successfully!');
+
+        }else{
+            session()->flash('reg_no_not_found','The registration number is required!');
+        }
 
     }
 
