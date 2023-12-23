@@ -26,7 +26,6 @@
                    @enderror
                </form>
             </div>
-            <span>{{ $this->received_ID }}</span>
 
             <form wire:submit="createCandidate" class="max-w-md items-center flex flex-col mx-auto">
                 @if($this->profile_pic)

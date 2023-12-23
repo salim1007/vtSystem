@@ -7,7 +7,7 @@
     </div>
     <div class="flex h-full bg-gray-400 flex-col">
         <div class="flex flex-col">
-            <span class="flex flex-col p-2 shadow-lg font-medium italic bg-green-200">Some suggestions from the system users</span>
+            <span class="flex flex-col p-2 shadow-lg font-medium italic bg-green-200">Some response from the system users</span>
             <div class="flex mt-2 flex-col">
                 <input type="search" placeholder="Search Sender....." class="flex p-2 ml-4 rounded-lg m-2 text-sm xs:w-44 sm:w-56" />
                 <div class="flex flex-col bg-green-200 italic xs:w-44 sm:w-56 mb-4 mt-2 text-xs ml-4 rounded-md">

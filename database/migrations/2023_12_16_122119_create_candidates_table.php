@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('photo_url');
             $table->string('reg_no');
+            $table->string('status')->default('ACTIVE');
             $table->timestamps();
         });
     }

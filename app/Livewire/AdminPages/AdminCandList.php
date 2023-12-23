@@ -12,6 +12,11 @@ class AdminCandList extends Component
 {
     use WithPagination;
     public $search;
+    public $candidate_description;
+    public $post;
+    public $candidate_name;
+    public $editing_id;
+    public $open_edit_tab = false;
     public function logout(){
         Auth::logout();
 
@@ -20,6 +25,38 @@ class AdminCandList extends Component
         return redirect()->to('/login');
 
 
+    }
+
+    public function openEditTab($edit_id){
+        $this->editing_id = $edit_id;
+        $candidate = Candidate::find($edit_id);
+        $this->candidate_name = $candidate->full_name;
+        $this->post = $candidate->post;
+        $this->candidate_description = $candidate->description;
+        $this->open_edit_tab = true;
+
+    }
+
+    public function editCandidate($candidate_id){
+        $validated = $this->validate([
+            'post' => 'required',
+            'candidate_description' => 'required'
+        ]);
+
+        $candidate = Candidate::find($candidate_id);
+        $candidate->update([
+            'post' => $this->post,
+            'description' => $this->candidate_description
+        ]);
+
+
+        $this->closeModal();
+
+        session()->flash('success','Candidate updated successfully!');
+    }
+    public function closeModal(){
+        $this->open_edit_tab = false;
+        $this->editing_id = null;
     }
 
 

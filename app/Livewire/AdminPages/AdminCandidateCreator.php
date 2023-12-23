@@ -36,7 +36,7 @@ class AdminCandidateCreator extends Component
     #[Rule(['images.*' => 'image|max:2048'])]
     public $images;
     #[Rule('required')]
-    #[Rule(['videos.*' =>'required|file|mimetypes:video/mp4|max:102400'])]
+    #[Rule(['videos.*' =>'video|mimetypes:video/mp4|max:102400'])]
     public $videos;
     public $image_path;
     public $video_path;

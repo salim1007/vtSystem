@@ -66,7 +66,7 @@
                                 {{ $candidate->year }}
                             </td>
                             <th scope="col" class="px-6 py-3">
-                                <button wire:click.prevent="gotoEditPage({{ $candidate->id }})" class="flex p-2 items-center justify-center rounded-md bg-blue-400 text-white w-16">Edit</button>
+                                <button wire:click.prevent="openEditTab({{ $candidate->id }})" class="flex p-2 items-center justify-center rounded-md bg-blue-400 text-white w-16">Edit</button>
                             </th>
 
                         </tr>
@@ -79,4 +79,45 @@
         </div>
 
     </div>
+    @if($this->open_edit_tab)
+        <div class="fixed inset-0 lg:h-5/6 lg:mt-6 sm:h-3/4 sm:mt-5 smx:h-5/6 md:h-1/2 md:mt-4  flex items-center justify-center z-50">
+            <div class="modal-overlay fixed inset-0 bg-black bg-opacity-70"></div>
+            <div class="modal-container relative w-full  max-w-md p-2 rounded-lg  dark:bg-gray-700">
+                <button wire:click="closeModal" type="button" class="absolute  mt-8 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="px-6 py-6 lg:px-8 flex flex-col mt-8 items-center">
+                    <h3 class="mb-4  items-center flex justify-center text-white font-medium w-80 dark:text-white">{{ $this->candidate_name }}</h3>
+
+                    <form wire:submit.prevent="editCandidate({{ $this->editing_id }})" class="space-y-2 flex flex-col items-center">
+                        <div class="flex flex-col gap-1">
+                            <label class="flex sm:text-xs text-white italic smx:text-sm">Post:</label>
+                            <select wire:model="post" type="text" id="post" name="post" class=" flex sm:text-xs text-white smx:text-sm bg-gray-500 p-2 rounded-md sm:w-64 md:w-80" >
+                                @foreach(\Illuminate\Support\Facades\DB::table('posts')->get() as $post)
+                                    <option value="{{ $post->post_title }}">{{ $post->post_title }}</option>
+                                @endforeach
+                            </select>
+                            @error('post')
+                            <span class="  text-red-400 text-xs p-2 w-64">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="flex flex-col gap-1">
+                            <label class="flex sm:text-xs text-white italic smx:text-sm">Candidate Description:</label>
+                            <textarea wire:model="candidate_description" id="candidate_description" name="candidate_description" class="flex h-32 sm:w-64 sm:text-xs text-white smx:text-sm md:w-80 bg-gray-500 rounded-md" ></textarea>
+                            @error('candidate_description')
+                            <span class="  text-red-600 text-xs p-2 w-64">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <button type="submit" class="bg-gray-700 flex items-center text-white justify-center sm:text-xs w-32 rounded-md p-2 smx:text-sm">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    @endif
+
 </div>
