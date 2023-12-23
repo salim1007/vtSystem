@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('mail_body');
             $table->string('sender_reg_no');
             $table->timestamps();
+
         });
     }
 
