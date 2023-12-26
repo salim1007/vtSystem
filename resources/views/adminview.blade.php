@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>vtSystem</title>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -34,5 +34,6 @@
 <script>
     const currentYear = new Date().getFullYear();
     document.getElementById('currentYear').textContent = currentYear;
+
 </script>
 </html>
