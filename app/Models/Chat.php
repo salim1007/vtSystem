@@ -20,15 +20,4 @@ class Chat extends Model
     {
         return Carbon::parse($value)->format('H:i');
     }
-    public function labelDate($date)
-    {
-        $carbonDate = Carbon::parse($date);
-        $yesterday = Carbon::yesterday();
-
-        if ($carbonDate->isSameDay($yesterday)) {
-            return 'Yesterday';
-        } else {
-            return $carbonDate->format('H:i');
-        }
-    }
 }
