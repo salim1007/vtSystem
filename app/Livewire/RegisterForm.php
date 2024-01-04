@@ -37,7 +37,7 @@ class RegisterForm extends Component
             'username'=>'required|max:20',
             'email'=>'required|email|unique:users|max:109',
             'voteNumber'=>'required|min:8|max:8',
-            'profilePic'=>'nullable|file|mimes:png,jpeg,jpg|max:2048',
+            'profilePic'=>'nullable|file|mimes:png,jpeg,jpg,webp|max:2048',
             'programme'=>'required',
             'college'=>'required',
             'yearOfStudy'=>'required',

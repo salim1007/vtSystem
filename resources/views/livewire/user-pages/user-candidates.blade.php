@@ -32,27 +32,53 @@
         </div>
     @endforeach
     @if($this->open_campaign_window)
-        <div class="fixed inset-0 flex w-full z-50">
-            <div class="modal-overlay fixed inset-0 bg-black bg-opacity-70"></div>
-            <div class="modal-container relative w-full  max-w-md p-2 rounded-lg shadow  dark:bg-gray-700">
-                <button wire:click="closeModal" type="button" class="absolute  mt-8 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="authentication-modal">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-                <div class=" w-full gap-2 flex">
+        <div class="modal-overlay fixed inset-0 bg-black bg-opacity-80"></div>
+        <div class="fixed inset-0 flex w-full z-50 p-6 mt-24 overflow-auto mb-12">
+            <div class="grid grid-cols-4 gap-x-4 xs:flex items-center xs:flex-col w-full h-full text-center space-y-10">
+                <div class="flex gap-5">
+                    <h1 class=" text-2xl text-white  xs:text-sm lg:text-lg">Campaign Videos for :  <b class="italic">{{' '.$this->candidate_name }}</b></h1>
+                    <button wire:click.prevent="closeCampaignWindow" class="flex hover:text-white hover:bg-gray-600 w-fit text-sm p-1 rounded-md items-center justify-center bg-red-500">close</button>
 
-                   @foreach($this->campaign as $campaign_video)
-                        <video class=" mt-2 rounded-md" controls>
-                            <source src="{{ asset('storage/'.$campaign_video->video_url) }}" type="video/mp4">
-
-                        </video>
-                   @endforeach
                 </div>
-
+                @foreach($this->campaign as $campaign_video)
+                    <video class="mt-2 xs:w-fit rounded-md " controls>
+                        <source src="{{ asset('storage/'.$campaign_video->video_url) }}" type="video/mp4">
+                    </video>
+                @endforeach
             </div>
         </div>
+
+
+    @endif
+
+    @if($this->open_photo_window)
+        <div class="modal-overlay fixed inset-0 bg-black bg-opacity-80"></div>
+        <div class="fixed inset-0 flex w-full z-50 p-6 mt-24 overflow-auto mb-12">
+            <div class="grid grid-cols-4 gap-x-4 xs:flex items-center xs:flex-col w-full h-full text-center space-y-10">
+                <div class="flex gap-5">
+                    <h1 class=" text-2xl text-white  xs:text-sm lg:text-lg">Campaign Photos for :  <b class="italic">{{' '.$this->candidate_name }}</b></h1>
+                    <button wire:click.prevent="closeCampaignPhotoWindow" class="flex hover:text-white hover:bg-gray-600 w-fit text-sm p-1 rounded-md items-center justify-center bg-red-500">close</button>
+
+                </div>
+                <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
+                <div class="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">
+                    <div class="-m-1 flex flex-wrap md:-m-2">
+                        <div class="flex sm:w-full w-1/3 flex-wrap">
+                            @foreach($this->campaign_photos as $campaign_photo)
+                            <div class="w-full p-1 md:p-2">
+                                <img
+                                    alt="gallery"
+                                    class="block h-full w-full rounded-lg object-cover object-center"
+                                    src="{{ asset('storage/'.$campaign_photo->photo_url) }}" />
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     @endif
 
 </div>

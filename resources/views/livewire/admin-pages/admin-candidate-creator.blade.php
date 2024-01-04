@@ -117,7 +117,7 @@
                     <form wire:submit="uploadCandidatePhoto" class="relative z-0 w-full mb-5 group">
                         <label class="block mb-2  text-sm font-medium text-white dark:text-white" for="user_avatar">Upload Photos for:<i class="text-black">{{"  ".$this->candidate_name }}</i></label>
                         <input multiple wire:model="images" accept="image/png, image/jpeg"  class="block text-black w-full xs:w-44 sm:w-64 smx:w-96 text-sm border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="images" name="images" type="file">
-                        @error('images.*')
+                        @error('images')
                             <span class="flex text-red-400 text-sm">{{ $message }}</span>
 
                         @enderror
@@ -164,9 +164,9 @@
             <div class="flex w-full p-6 ">
                 <div class="flex flex-col w-full bg-gray-400 p-3 rounded-lg mb-8">
                     <form wire:submit="uploadCandidateVideo" class="relative z-0 w-full mb-5 group">
-                        <label class="block mb-2 text-sm font-medium text-white dark:text-white" for="user_avatar">Upload Videos</label>
-                        <input multiple wire:model="videos" class="block w-full xs:w-44 sm:w-64 smx:w-96 text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
-                        @error('videos.*')
+                        <label class="block mb-2 text-sm font-medium text-white dark:text-white" for="user_avatar">Upload Videos for:<i class="text-black">{{"  ".$this->candidate_name2 }}</i> </label>
+                        <input multiple wire:model="videos" class="block w-full xs:w-44 sm:w-64 smx:w-96 text-sm text-black border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+                        @error('videos')
                         <span class="flex text-red-400 text-sm">{{ $message }}</span>
 
                         @enderror

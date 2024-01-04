@@ -36,7 +36,7 @@ class AdminCandidateCreator extends Component
     #[Rule(['images.*' => 'image|max:2048'])]
     public $images;
     #[Rule('required')]
-    #[Rule(['videos.*' =>'video|mimetypes:video/mp4|max:102400'])]
+    #[Rule(['videos.*' =>'video|mimetypes:video/mp4'])]
     public $videos;
     public $image_path;
     public $video_path;
@@ -47,7 +47,6 @@ class AdminCandidateCreator extends Component
     public function uploadCandidatePhoto(){
         $this->validateOnly('images');
         if($this->upload_reg_no) {
-
             if (is_array($this->images)) {
                 foreach ($this->images as $image) {
                     $this->image_path = $image->store('candidateImages', 'public');
@@ -70,7 +69,7 @@ class AdminCandidateCreator extends Component
 
     }
 
-    public function uploadCandidateVideo(Request $request){
+    public function uploadCandidateVideo(){
         $this->validateOnly('videos');
         if($this->upload_reg_no2) {
             if (is_array($this->videos)) {
@@ -86,9 +85,8 @@ class AdminCandidateCreator extends Component
 
             }
 
-
             $this->upload_reg_no2 = null;
-            $this->video = null;
+            $this->videos = null;
 
             session()->flash('success', 'Videos uploaded successfully!');
 

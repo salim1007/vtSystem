@@ -3,6 +3,7 @@
 namespace App\Livewire\UserPages;
 
 use App\Models\Candidate;
+use App\Models\CandidatePhoto;
 use App\Models\CandidateVideo;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,18 +14,34 @@ class UserCandidates extends Component
 
     public $search;
     public $campaign;
+    public $campaign_photos;
     public $open_campaign_window = false;
     public $open_photo_window = false;
+    public $candidate_name = false;
 
-    public function viewCampaign($reg_no){
-        $this->open_campaign_window = true;
-        $candidate = Candidate::where('id',$reg_no)->first();
-        $this->campaign = CandidateVideo::where('reg_no',$candidate->reg_no)->get();
+    public function closeCampaignWindow(){
+        $this->open_campaign_window = false;
 
     }
-    public function viewPhotos($reg_number){
+    public function closeCampaignPhotoWindow()
+    {
+        $this->open_photo_window = false;
+    }
+
+    public function viewCampaign($id){
+        $this->open_campaign_window = true;
+        $candidate = Candidate::where('id',$id)->first();
+        $this->campaign = CandidateVideo::where('reg_no',$candidate->reg_no)->get();
+        $this->candidate_name = Candidate::where('id', $id)->value('full_name');
+
+
+    }
+    public function viewPhotos($id){
         $this->open_photo_window = true;
-        $candidate = Candidate::where('id',$reg_number)->first();
+        $candidate = Candidate::where('id',$id)->first();
+        $this->campaign_photos = CandidatePhoto::where('reg_no', $candidate->reg_no)->get();
+        $this->candidate_name = Candidate::where('id', $id)->value('full_name');
+
 
     }
     public function render()
