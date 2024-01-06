@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Vote extends Model
 {
     use HasFactory;
-    protected $table = 'posts';
-    protected $fillable = ['post_title','description','post_code','cand_idty'];
+    protected $table = 'votes';
+    protected $fillable = ['voter_reg_no','post','candidate_chosen','status'];
 }

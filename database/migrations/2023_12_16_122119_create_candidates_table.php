@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('post');
             $table->string('post_code');
             $table->string('year');
+            $table->string('cand_idty');
             $table->string('programme');
             $table->string('college');
             $table->string('description');

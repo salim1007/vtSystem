@@ -134,6 +134,19 @@ class AdminCandidateCreator extends Component
             'post'=>'required',
         ]);
 
+        $candidate = Candidate::latest()->first();
+
+        if ($candidate){
+            $code = $candidate->cand_idty + 2;
+            $candidate_identity = str_pad($code, 3,0,STR_PAD_LEFT);
+
+        }else {
+            $code = 0;
+            $code = $code + 2;
+            $candidate_identity = str_pad($code, 3, 0, STR_PAD_LEFT);
+        }
+
+
         $post_name = Post::where('post_code', $this->post)->value('post_title');
         $profile_picture_url = User::where('regNo', $this->reg_number)->value('photoUrl');
 
@@ -150,6 +163,7 @@ class AdminCandidateCreator extends Component
                 'reg_no'=>$this->reg_number,
                 'post_code'=>$this->post,
                 'post'=>$post_name,
+                'cand_idty' => $candidate_identity,
                 'description'=>$this->description,
                 'photo_url'=>$profile_picture_url
 

@@ -9,5 +9,5 @@ class Candidate extends Model
 {
     use HasFactory;
     protected $table = 'candidates';
-    protected $fillable = ['full_name','post','post_code','year','programme','college','description','photo_url','reg_no','status'];
+    protected $fillable = ['full_name','post','post_code','year','cand_idty','programme','college','description','photo_url','reg_no','status'];
 }
