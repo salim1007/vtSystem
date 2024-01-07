@@ -2,16 +2,19 @@
 
 namespace App\Livewire\AdminPages;
 
+use App\Models\Candidate;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class AdminDashboard extends Component
 {
-    public $nummer = 65;
-    public $nummor = 80;
-    public $votedCount;
-    public $notedCount;
+    public $voted_count;
+    public $not_voted_count;
+    public $selectedOption = 1;
+    public $users_list = [];
 
 
 
@@ -25,13 +28,52 @@ class AdminDashboard extends Component
 
     }
     public function mount(){
-        $this->votedCount = DB::table('users')->where('id', 1)->value('regNo');
-        $this->notedCount = DB::table('users')->where('id', 3)->value('regNo');
+        $total_users = User::all()->count();
+        $voted_users = 0;
+        foreach (DB::table('users')->get() as $user ){
+            if (DB::table('votes')->where('voter_reg_no', $user->regNo)->exists()){
+                $voted_users++;
+            }
+        }
+        $this->voted_count = $voted_users;
+        $this->not_voted_count = $total_users - $voted_users;
+
+
+
     }
+
+    public function setFilterValue($value)
+    {
+        $this->selectedOption = $value;
+
+     if($this->selectedOption == 2){
+            foreach (DB::table('users')->get() as $user ){
+                if (DB::table('votes')->where('voter_reg_no', $user->regNo)->exists()){
+                    $this->users_list = User::where('regNo', $user->regNo)->get();
+                }
+            }
+        }elseif ($this->selectedOption == 3){
+            foreach (DB::table('users')->get() as $user ){
+                if (!DB::table('votes')->where('voter_reg_no', $user->regNo)->exists()){
+                    $this->users_list = User::where('regNo', $user->regNo)->get();
+                }
+            }
+        }
+
+    }
+
+
 
 
     public function render()
     {
-        return view('livewire.admin-pages.admin-dashboard');
+        $total_users = User::all()->count();
+        $total_candidates = Candidate::all()->count();
+        $total_posts = Post::all()->count();
+        return view('livewire.admin-pages.admin-dashboard',[
+            'total_users' => $total_users,
+            'total_candidates' => $total_candidates,
+            'total_posts' => $total_posts,
+        ]);
     }
 }

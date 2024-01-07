@@ -26,9 +26,7 @@
     <livewire:dynamic-admin-view/>
 
 </div>
-<footer class="flex xs:text-xs w-screen p-3 bg-gray-400">
-    <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
-</footer>
+
 @stack('js')
 </body>
 <script>

@@ -2,7 +2,7 @@
     <div class="flex h-14 pl-4 items-center justify-between shadow-lg bg-blue-400 w-full">
         <span>jkksdjnk</span>
         <button wire:click="logout" class="flex " >
-            <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 16L21 12M21 12L17 8M21 12L7 12M13 16V17C13 18.6569 11.6569 20 10 20H6C4.34315 20 3 18.6569 3 17V7C3 5.34315 4.34315 4 6 4H10C11.6569 4 13 5.34315 13 7V8" stroke="#374151" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', 0006 )->skip(1)->value('cand_idty'))->count() }}L21 12M21 12L17 8M21 12L7 12M13 {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', 0006 )->skip(1)->value('cand_idty'))->count() }}V17C13 18.6569 11.6569 20 10 20H6C4.34315 20 3 18.6569 3 17V7C3 5.34315 4.34315 4 6 4H10C11.6569 4 13 5.34315 13 7V8" stroke="#374151" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
         </button>
     </div>
     <div class="flex flex-col bg-gray-400 h-full">
@@ -79,34 +79,7 @@
 
 
 
-@push('js')
-    <script>
-       var options = {
-            chart: {
-                type: 'bar',
-                height:'250'
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: true
-                }
-            },
-            series: [{
-                data: [{
-                    x: 'Salim',
-                    y: 20000
-                }, {
-                    x: 'Isak',
-                    y: 13000
-                }],
-                name:'votes'
-            }]
-        }
-       var chart = new ApexCharts(document.querySelector("#chart1"), options);
 
-       chart.render();
-    </script>
-@endpush
 
 
 @push('js')
@@ -124,11 +97,11 @@
             },
             series: [{
                 data: [{
-                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', 0003 )->value('full_name')}}',
-                    y: 23
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', 0003 )->value('full_name')  }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', 0003 )->value('cand_idty'))->count() }}
                 }, {
                     x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', 0003)->skip(1)->value('full_name') }}',
-                    y: 16
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', 0003 )->skip(1)->value('cand_idty'))->count() }}
 
                 }
                 ],
@@ -143,6 +116,672 @@
 
     </script>
 @endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', 0006 )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', 0006 )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', 0006)->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', 0006 )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0006"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0009" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0009" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0009")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0009" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0009"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0012" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0012" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0012")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0012" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0012"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0015" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0015" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0015")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0015" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0015"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0018" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0018" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0018")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0018" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0018"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0021" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0021" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0021")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0021" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0021"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0024" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0024" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0024")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0024" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0024"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0027" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0027" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0027")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0027" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0027"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0030" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0030" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0030")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0030" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0030"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0033" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0033" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0033")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0033" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0033"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0036" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0036" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0036")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0036" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0036"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0039" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0039" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0039")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0039" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0039"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0042" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0042" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0042")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0042" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0042"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0045" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0045" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0045")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0045" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0045"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0048" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0048" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0048")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0048" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0048"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0051" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0051" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0051")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0051" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0051"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0054" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0054" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0054")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0054" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0054"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0057" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0057" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0057")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0057" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0057"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0060" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0060" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0060")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0060" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0054"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
 
 
 <script>

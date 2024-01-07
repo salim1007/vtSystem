@@ -1,5 +1,5 @@
-<div class="flex flex-col w-full text-sm h-full">
-    <div class="flex h-14 pl-4 items-center justify-between bg-blue-400 w-full">
+<div class="flex flex-col w-full text-sm h-full overflow-y-auto scrollbar-hidden" style="height: 100vh">
+    <div class="flex p-4 pl-4 items-center justify-between bg-blue-400 w-full">
         <span>jkksdjnk</span>
         <button wire:click="logout" class="flex mr-4" >
             <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 16L21 12M21 12L17 8M21 12L7 12M13 16V17C13 18.6569 11.6569 20 10 20H6C4.34315 20 3 18.6569 3 17V7C3 5.34315 4.34315 4 6 4H10C11.6569 4 13 5.34315 13 7V8" stroke="#374151" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
@@ -27,7 +27,7 @@
                 @endif
 
             </div>
-            <div wire:poll.keep-alive.100ms class="py-4 relative flex flex-grow flex-col px-7 justify-start">
+            <div wire:poll.keep-alive.5s class="py-4  relative scrollbar-hidden overflow-y-auto  flex h-full flex-grow flex-col px-7 justify-start">
                 @foreach($mails as $mail)
                     <div class="mr-auto rounded-lg mb-5 rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
                         <p>{{ $mail->mail_body }}</p>
