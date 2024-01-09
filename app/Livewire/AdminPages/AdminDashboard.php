@@ -47,18 +47,21 @@ class AdminDashboard extends Component
         $this->selectedOption = $value;
 
      if($this->selectedOption == 2){
-            foreach (DB::table('users')->get() as $user ){
-                if (DB::table('votes')->where('voter_reg_no', $user->regNo)->exists()){
-                    $this->users_list = User::where('regNo', $user->regNo)->get();
-                }
-            }
-        }elseif ($this->selectedOption == 3){
-            foreach (DB::table('users')->get() as $user ){
-                if (!DB::table('votes')->where('voter_reg_no', $user->regNo)->exists()){
-                    $this->users_list = User::where('regNo', $user->regNo)->get();
-                }
-            }
-        }
+         $this->users_list = DB::table('users')
+             ->join('votes', 'users.regNo', '=', 'votes.voter_reg_no')
+             ->select('users.*')
+             ->distinct('users.regNo')
+             ->get();
+
+
+     }elseif ($this->selectedOption == 3){
+         $this->users_list = DB::table('users')
+             ->leftJoin('votes', 'users.regNo', '=', 'votes.voter_reg_no')
+             ->whereNull('votes.voter_reg_no')
+             ->select('users.*')
+             ->get();
+
+     }
 
     }
 

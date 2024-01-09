@@ -28,6 +28,7 @@
             </div>
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/progress">Progress</a>
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/mailbox">Mailbox</a>
+            <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/settings">Settings</a>
 
 
             <span class="flex ml-3.5 md:hidden xs:mt-14">Powered by @Ydde-MaUI</span>
@@ -80,6 +81,13 @@
                    <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                </footer>
            </div>
+        @elseif(session()->get('vali') == 'settings')
+            <div class="flex flex-col w-full">
+                <livewire:admin-pages.admin-settings />
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                    <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
+                </footer>
+            </div>
         @endif
 
 

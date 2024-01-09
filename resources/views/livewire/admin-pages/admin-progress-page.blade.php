@@ -6,9 +6,7 @@
         </button>
     </div>
     <div class="flex flex-col bg-gray-400 h-full">
-        <div class="w-full p-3">
-            <button type="button" onclick="openModal(true)" class="flex rounded-md bg-green-200 shadow-lg p-2">Settings</button>
-        </div>
+
         <span class=" flex flex-col mt-4 justify-center items-center font-medium">Election Progress</span>
         @foreach(\Illuminate\Support\Facades\DB::table('posts')->get() as $post)
             <div class="mt-4 bg-green-200 xs:flex xs:flex-col flex gap-3 w-full p-3">
@@ -40,40 +38,7 @@
 
     </div>
 
-    <!-- overlay -->
-    <div id="modal_overlay" class="hidden absolute inset-0 bg-black bg-opacity-30 h-screen w-full flex justify-center items-start md:items-center pt-10 md:pt-0">
 
-        <!-- modal -->
-        <div id="modal" class="opacity-0 transform -translate-y-full scale-150  relative w-10/12 md:w-1/2 h-1/2 md:h-3/4 bg-white rounded shadow-lg transition-opacity transition-transform duration-300">
-
-            <!-- button close -->
-            <button
-                onclick="openModal(false)"
-                class="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-2xl w-10 h-10 rounded-full focus:outline-none text-white">
-                &cross;
-            </button>
-
-            <!-- header -->
-            <div class="px-4 py-3 border-b border-gray-200">
-                <h2 class="text-xl font-semibold text-gray-600">Settings</h2>
-            </div>
-
-            <!-- body -->
-            <div class="w-full p-3">
-                Set Timer
-            </div>
-
-            <!-- footer -->
-            <div class="absolute bottom-0 left-0 px-4 py-3 border-t border-gray-200 w-full flex justify-end items-center gap-3">
-                <button class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded text-white focus:outline-none">Set</button>
-                <button
-                    onclick="openModal(false)"
-                    class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white focus:outline-none"
-                >Close</button>
-            </div>
-        </div>
-
-    </div>
 
 </div>
 
@@ -774,7 +739,112 @@
             }]
         }
 
-        var chart = new ApexCharts(document.querySelector("#chart0054"), options);
+        var chart = new ApexCharts(document.querySelector("#chart0060"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0063" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0063" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0063")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0063" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0063"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0066" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0066" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0066")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0066" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0066"), options);
+
+        chart.render();
+
+
+    </script>
+@endpush
+
+@push('js')
+    <script>
+
+        var options = {
+            chart: {
+                type: 'bar',
+                height:'200'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true
+                }
+            },
+            series: [{
+                data: [{
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0069" )->value('full_name')}}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0069" )->value('cand_idty'))->count() }}
+                }, {
+                    x: '{{ \Illuminate\Support\Facades\DB::table('candidates')->where('post_code', "0069")->skip(1)->value('full_name') }}',
+                    y: {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', "0069" )->skip(1)->value('cand_idty'))->count() }}
+
+                }
+                ],
+                name:'votes'
+            }]
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart0069"), options);
 
         chart.render();
 

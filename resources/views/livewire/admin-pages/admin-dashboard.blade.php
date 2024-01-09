@@ -1,4 +1,4 @@
-<div  class=" w-full h-full flex flex-col overflow-y-auto scrollbar-hidden " style="height: 110vh">
+<div  class=" w-full h-full flex flex-col " >
     <div class="h-14 pl-4 mb-4 flex w-full justify-between items-center p-2 xs:text-xs bg-green-200">
         <span class="flex font-medium text-lg">Dashboard</span>
         <button wire:click="logout" class="" >
@@ -27,7 +27,7 @@
     </div>
 
         <div class=" bg-amber-200 xs:items-center xs:justify-center xs:w-full xs:flex xs:mt-6 p-5 xs:mb-2"  >
-            <div class="px-1  w-fit" id="chart"></div>
+            <div class="px-1 w-fit" id="chart"></div>
         </div>
 
 
@@ -56,7 +56,7 @@
                         year
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        status
+                        registration number
                     </th>
                     <th scope="col" class="px-6 py-3">
                         account status
@@ -77,7 +77,7 @@
                                 {{ $user->yearOfStudy }}
                             </td>
                             <td class="px-6 py-4">
-                                Voted
+                                {{ $user->regNo }}
                             </td>
                             <td class="px-6 py-4">
                                 ACTIVE
@@ -102,7 +102,7 @@
                                 {{ $user->yearOfStudy }}
                             </td>
                             <td class="px-6 py-4">
-                                Voted
+                                {{ $user->regNo }}
                             </td>
                             <td class="px-6 py-4">
                                 ACTIVE

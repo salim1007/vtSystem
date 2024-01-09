@@ -8,6 +8,7 @@ use Livewire\Component;
 class DynamicView extends Component
 {
 
+
     public function logout(){
         Auth::logout();
 

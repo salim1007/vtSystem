@@ -66,6 +66,11 @@ Route::get('/mailbox', function () {
     session()->put('vali','mailbox');
     return view('adminview', ['token' => $token]);
 });
+Route::get('/settings', function () {
+    $token = session()->get('jwt_token');
+    session()->put('vali','settings');
+    return view('adminview', ['token' => $token]);
+});
 
 
 
