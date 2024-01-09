@@ -16,9 +16,13 @@
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/profile">Profile</a>
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/candidates">Candidates</a>
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/how_to">How To</a>
+            @if($this->date_is_in_btn)
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/vote">Vote</a>
+            @endif
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/chatroom">ChatRoom</a>
-            <a wire:navigate class=" block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/results">Results</a>
+            @if(!$this->date_is_in_btn)
+                <a wire:navigate class=" block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/results">Results</a>
+            @endif
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/mail">Mailbox</a>
             <div @click.away="open = false" class="relative" x-data="{ open: false }">
                 <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:block hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
@@ -53,11 +57,23 @@
         @elseif(session()->get('vali') == 'how_to')
             <livewire:user-pages.user-how-to />
         @elseif(session()->get('vali') == 'vote')
+            @if($this->date_is_in_btn)
             <livewire:user-pages.user-votepage />
+            @else
+                <div class="fixed inset-0 flex z-50">
+                    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-98 text-white  smx:text-2xl xs:text-sm lg:text-3xl flex justify-center pt-52"> 401 - Unauthorized</div>
+                </div>
+            @endif
         @elseif(session()->get('vali') == 'chatroom')
             <livewire:user-pages.user-chatroom />
         @elseif(session()->get('vali') == 'results')
-            <livewire:user-pages.user-results />
+            @if(!$this->date_is_in_btn)
+                <livewire:user-pages.user-results />
+            @else
+                <div class="fixed inset-0 flex z-50">
+                    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-98 text-white  smx:text-2xl xs:text-sm lg:text-3xl flex justify-center pt-52"> 401 - Unauthorized</div>
+                </div>
+            @endif
         @elseif(session()->get('vali') == 'mail')
             <livewire:user-pages.user-mailbox />
         @elseif(session()->get('vali') == 'privacy_policy')
@@ -68,7 +84,7 @@
     </div>
 
 
-    <x-notifications position="top-center" />
+
 
 
 

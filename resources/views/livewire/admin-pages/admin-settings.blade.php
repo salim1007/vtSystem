@@ -37,11 +37,21 @@
                 </div>
 
                 <!-- Submit button -->
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Submit
-                </button>
+                <div class="flex flex-col w-32 gap-3 text-sm">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Set Timer
+                    </button>
+                    <button type="button" wire:click="UpdateTimer" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Update Timer
+                    </button>
+                </div>
             </div>
         </form>
+
+        <div class="flex flex-col gap-3 mt-12 text-sm">
+            <span>Chosen start_date: <b class="text-green-400 ml-1">{{ $start_Date }}</b></span>
+            <span>Chosen end_date: <b class="text-red-400 ml-2">{{ $end_Date }}</b></span>
+        </div>
 
     </div>
 </div>

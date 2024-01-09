@@ -45,7 +45,10 @@
 
                 </div>
 
+
+
             </div>
+
             @if($this->showModal)
                 <div class="fixed inset-0 lg:h-5/6 lg:mt-6 sm:h-3/4 sm:mt-5 smx:h-5/6 md:h-1/2 md:mt-4  flex items-center justify-center z-50">
                     <div class="modal-overlay fixed inset-0 bg-black bg-opacity-70"></div>
@@ -99,6 +102,13 @@
             @endif
 
         </div>
+        @if($this->date_is_in_btn)
+        <span class="flex-col mt-20 xs:mt-3 justify-center flex lg:mt-20  items-center w-full">
+            <span class="xs:text-sm">Time left:</span>
+            <span class="lg:text-5xl" id="countdown"></span>
+        </span>
+        @endif
+
     </div>
 
     <div class="flex gap-4 mt-40 xs:flex-col w-full sm:flex-col items-center sml:flex-col justify-evenly lg:gap-2 lg:flex-col xl:flex-row md:flex-col">
@@ -192,6 +202,7 @@
                     <span>Incomplete slots:</span>
                     <span class="flex font-medium">2</span>
                 </div>
+
 
 
             </div>

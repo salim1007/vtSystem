@@ -3,6 +3,7 @@
 namespace App\Livewire\UserPages;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -21,6 +22,52 @@ class UserProfile extends Component
     public $profilePhoto;
 
     public $description;
+
+    public $date_is_in_btn = false;
+
+    public function mount()
+    {
+        if(DB::table('election_dates')->exists()){
+            $election = DB::table('election_dates')->first();
+            $start_date = Carbon::parse($election->start_date);
+            $end_date = Carbon::parse($election->end_date);
+            $now = Carbon::now();
+
+            $date_is_in_btn = $now->between($start_date, $end_date);
+
+
+            if($date_is_in_btn){
+                $this->date_is_in_btn = true;
+                $remainingTime = $end_date->diffInSeconds($now);
+                echo "
+            <script>
+            var countDownDate = new Date().getTime() + {$remainingTime} * 1000;
+
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById('countdown').innerHTML = 'Voting Process is Closed';
+                }
+            }, 1000);
+            </script>
+            ";
+            } else {
+                $this->date_is_in_btn = false;
+            }
+        } else {
+            dd('No dates have been submitted yet!');
+        }
+    }
 
 
     public function openNotification(){

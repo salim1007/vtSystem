@@ -66,8 +66,6 @@ class AdminDashboard extends Component
     }
 
 
-
-
     public function render()
     {
         $total_users = User::all()->count();
