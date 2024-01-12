@@ -77,7 +77,7 @@
 
         <form wire:submit.prevent="sendMessage" class="flex flex-row items-center justify-end w-full gap-1 mr-4 mt-20">
             <div class="flex items-center h-20 w-full">
-                <textarea wire:model="user_chat" type="text" class="rounded-xl items-center h-28 flex w-full p-2"></textarea>
+                <textarea wire:model="user_chat" type="text" class="rounded-xl items-center h-32 flex w-full p-2"></textarea>
             </div>
             <div class="flex-shrink-0">
                 <button type="submit">
