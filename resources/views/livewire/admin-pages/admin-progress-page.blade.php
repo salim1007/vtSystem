@@ -1,11 +1,22 @@
 <div class="flex flex-col w-full xs:text-xs h-full">
     <div class="flex h-14 pl-4 items-center justify-between shadow-lg bg-blue-400 w-full">
-        <span>jkksdjnk</span>
-        <span>
-           <button wire:click="generatePDF" class="flex rounded-md p-1 bg-green-400">Create PDF</button>
+        <div class="flex gap-3 items-center">
+            <span class="p-1 font-bold">Progress</span>
+            @if(!$this->date_is_in_btn)
+                <span>
+           <button wire:click="generatePDF" class="flex rounded-md p-1 hover:bg-red-400 text-black bg-red-500 items-center gap-1">
+               <span>Download</span>
+               <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 18a.969.969 0 0 0 .933 1h12.134A.97.97 0 0 0 15 18M1 7V5.828a2 2 0 0 1 .586-1.414l2.828-2.828A2 2 0 0 1 5.828 1h8.239A.97.97 0 0 1 15 2v5M6 1v4a1 1 0 0 1-1 1H1m0 9v-5h1.5a1.5 1.5 0 1 1 0 3H1m12 2v-5h2m-2 3h2m-8-3v5h1.375A1.626 1.626 0 0 0 10 13.375v-1.75A1.626 1.626 0 0 0 8.375 10H7Z"/>
+               </svg>
+           </button>
         </span>
-        <button wire:click="logout" class="flex " >
-            <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', 0006 )->skip(1)->value('cand_idty'))->count() }}L21 12M21 12L17 8M21 12L7 12M13 {{ \Illuminate\Support\Facades\DB::table('votes')->where('candidate_chosen', DB::table('candidates')->where('post_code', 0006 )->skip(1)->value('cand_idty'))->count() }}V17C13 18.6569 11.6569 20 10 20H6C4.34315 20 3 18.6569 3 17V7C3 5.34315 4.34315 4 6 4H10C11.6569 4 13 5.34315 13 7V8" stroke="#374151" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+            @endif
+        </div>
+        <button wire:click="logout" class="flex mr-3 " >
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" height="10" width="10" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h11m0 0-4-4m4 4-4 4m-5 3H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h3"/>
+            </svg>
         </button>
     </div>
     <div class="flex flex-col bg-gray-400 h-full">

@@ -1,5 +1,14 @@
 <div class=" w-full h-full flex flex-col text-xs ">
     <form class="xs:mt-24 sm:items-center xs:items-center flex flex-col gap-4 lg:items-center sm:mb-8 w-full">
+        @if(session()->has('success'))
+            <div id="toast-simple" class="flex items-center w-full max-w-xs p-4 space-x-4 rtl:space-x-reverse text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800" role="alert">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                </svg>
+                <div class="ps-4 text-sm font-normal">{{ session('success') }}</div>
+            </div>
+
+        @endif
         <div class="flex flex-col">
             <h1 class="text-gray-800 font-bold text-lg mb-1">Hello Again!</h1>
             <p class="text-xs font-normal text-gray-600 mb-7">Welcome Back</p>

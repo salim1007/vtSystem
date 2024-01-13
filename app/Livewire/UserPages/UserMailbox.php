@@ -18,10 +18,15 @@ class UserMailbox extends Component
             'sender_reg_no' => auth()->user()->regNo
         ]);
 
-        session()->flash('success','Message sent successfully!');
-        sleep(2);
+        session()->flash('success_mail','Message sent successfully!');
+
 
         $this->reset('mail_body');
+
+    }
+    public function closeMessage()
+    {
+        session()->flash('success_mail', null);
 
     }
     public function render()

@@ -1,4 +1,4 @@
-<div class="flex flex-col w-3/4 xs:w-64 lg:w-2/3 smx:w-96 sml:w-4/5 xs:h-fit llg:mt-2 xs:mt-4 sm:w-80 rounded-3xl ">
+<div class="flex flex-col w-3/4 xs:w-64 lg:w-2/3 smx:w-96 sml:w-4/5 xs:h-fit llg:mt-2 xs:mt-4 sm:w-80 rounded-3xl h-full">
     <div class="flex items-center justify-center mt-6 p-2">
         <input wire:model.live.debounce.200ms="search" type="search" placeholder="Search name, post..." class="flex rounded-2xl p-2 pl-4 w-72"  />
     </div>

@@ -41,7 +41,12 @@ class AdminPostCreator extends Component
         ]);
 
         $this->reset('post_title','post_description');
-        session()->flash('success','Post added Successfully');
+        session()->flash('success_post','Post created Successfully!');
+
+    }
+    public function closeMessage()
+    {
+        session()->flash('success_post', null);
 
     }
     public function editPost($postId){
@@ -69,7 +74,7 @@ class AdminPostCreator extends Component
         ]);
 
         $this->reset('post_title','post_description');
-        session()->flash('success','Post Updated Successfully');
+        session()->flash('success_post','Post Updated Successfully');
 
         $this->showEditTab = false;
 

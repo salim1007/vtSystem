@@ -7,7 +7,6 @@ use Livewire\Component;
 
 class CreatePDF extends Component
 {
-    public $results;
     public function render()
     {
         $results = Candidate::all();

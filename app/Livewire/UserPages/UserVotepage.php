@@ -30,8 +30,12 @@ class UserVotepage extends Component
 
 //        dd('voted successfully!');
 
-        session()->flash('success', 'Vote casted successfully!');
+        session()->flash('success_vote', 'Chairman Vote casted successfully!');
 
+    }
+    public function successVote()
+    {
+        session()->flash('success_vote', null);
     }
 
     public function submitVote0006()
@@ -51,7 +55,7 @@ class UserVotepage extends Component
 
 //        dd('voted for 0006 successfully!');
 
-        session()->flash('success', 'Vote casted successfully!');
+        session()->flash('success_vote', 'General Secretary Vote casted successfully!');
 
     }
 
@@ -72,7 +76,7 @@ class UserVotepage extends Component
 
 //        dd('voted for 0006 successfully!');
 
-        session()->flash('success', 'Vote casted successfully!');
+        session()->flash('success_vote', 'Vice Chairman Vote casted successfully!');
 
     }
     public function render()

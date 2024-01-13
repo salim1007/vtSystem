@@ -72,7 +72,9 @@ class RegisterForm extends Component
 
 
         $this->reset('firstname','midname','phoneNumber','username','college','regNo','surname','profilePic','password','confirmPassword','email','voteNumber','programme','yearOfStudy');
+
         session()->flash('success','Successfully registered');
+
         return redirect()->to('/login');
 
     }

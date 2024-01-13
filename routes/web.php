@@ -71,6 +71,9 @@ Route::get('/settings', function () {
     session()->put('vali','settings');
     return view('adminview', ['token' => $token]);
 });
+Route::get('/pdf', function () {
+    return view('livewire.admin-pages.create-p-d-f');
+});
 
 
 

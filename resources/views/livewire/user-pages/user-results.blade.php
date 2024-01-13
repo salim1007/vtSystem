@@ -1,4 +1,4 @@
-<div class=" bg-blue-400 flex flex-col w-full">
+<div class=" bg-blue-400 flex h-full flex-col w-full">
     <div class="p-3 flex bg-amber-200 xs:text-xs lg:text-sm ">
         Hi, {{ auth()->user()->firstname }}. The election results are now available.
     </div>

@@ -62,7 +62,7 @@ class AdminCandidateCreator extends Component
             $this->images = null;
             $this->upload_reg_no = null;
             $this->candidate_name = null;
-            session()->flash('success', 'Photos uploaded successfully!');
+            session()->flash('success_photo', 'Photos uploaded successfully!');
         }else{
             session()->flash('reg_no_not_found','The registration number is required!');
         }
@@ -88,7 +88,7 @@ class AdminCandidateCreator extends Component
             $this->upload_reg_no2 = null;
             $this->videos = null;
 
-            session()->flash('success', 'Videos uploaded successfully!');
+            session()->flash('success_video', 'Videos uploaded successfully!');
 
         }else{
             session()->flash('reg_no_not_found','The registration number is required!');
@@ -151,30 +151,61 @@ class AdminCandidateCreator extends Component
         $profile_picture_url = User::where('regNo', $this->reg_number)->value('photoUrl');
 
         if(Candidate::where('reg_no', $this->reg_number)->exists()){
-            session()->flash('info','Candidate already exists!!');
-            dd('exists');
+            session()->flash('success_error','Candidate already exists!!');
 
         }else{
-            Candidate::create([
-                'full_name'=>$this->full_name,
-                'year'=>$this->year,
-                'college'=>$this->college,
-                'programme'=>$this->programme,
-                'reg_no'=>$this->reg_number,
-                'post_code'=>$this->post,
-                'post'=>$post_name,
-                'cand_idty' => $candidate_identity,
-                'description'=>$this->description,
-                'photo_url'=>$profile_picture_url
+            if($profile_picture_url){
+                Candidate::create([
+                    'full_name'=>$this->full_name,
+                    'year'=>$this->year,
+                    'college'=>$this->college,
+                    'programme'=>$this->programme,
+                    'reg_no'=>$this->reg_number,
+                    'post_code'=>$this->post,
+                    'post'=>$post_name,
+                    'cand_idty' => $candidate_identity,
+                    'description'=>$this->description,
+                    'photo_url'=>$profile_picture_url
 
-            ]);
+                ]);
 
-            $this->profile_pic = null;
+                $this->profile_pic = null;
 
-            $this->reset('full_name','year','college','programme','post','description','reg_number');
-            session()->flash('success','Candidate Added Successfully');
+                $this->reset('full_name','year','college','programme','post','description','reg_number');
+                session()->flash('success_candidate','Candidate Created Successfully');
+            }else{
+                session()->flash('photo_error', 'User has no photo!');
+            }
+
         }
 
+
+
+    }
+
+    public function closeMessage()
+    {
+        session()->flash('success_candidate', null);
+
+    }
+    public function closeError()
+    {
+        session()->flash('success_error', null);
+
+    }
+    public function closePhotoError()
+    {
+        session()->flash('photo_error', null);
+
+    }
+    public function closeVideoError()
+    {
+        session()->flash('reg_no_not_found', null);
+
+    }
+    public function closeVideoMessage()
+    {
+        session()->flash('success_video', null);
 
     }
     public function setRegNumber(){
