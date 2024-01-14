@@ -7,23 +7,10 @@
     </div>
 
 
-    <div class="py-4 relative flex flex-grow flex-col px-10 justify-start" style="background-color:#e5ddd5;">
+    <div class="py-4 relative flex flex-grow justify-between flex-col px-10 " style="background-color:#e5ddd5;">
         <span class="mb-6 text-sm rounded-3xl shadow-lg bg-blue-400 w-fit p-2">Have a chat with your fellows</span>
 
-       <div  wire:poll.keep-alive.100ms class="flex flex-col  p-2  overflow-x-hidden scrollbar-hidden rounded-md h-96 overflow-y-auto ">
-           @php
-               function labelDate($date)
-                {
-                  $carbonDate = \Carbon\Carbon::parse($date);
-                  $yesterday = \Carbon\Carbon::yesterday();
-
-                  if ($carbonDate->isSameDay($yesterday)) {
-                     return 'Yesterday';
-                  } else {
-                     return $carbonDate->format('H:i'); // Format for other dates
-                  }
-                }
-           @endphp
+       <div  wire:poll.keep-alive.100ms class="flex flex-col shadow-none  p-4  overflow-x-hidden scrollbar-hidden rounded-md h-96 overflow-y-auto ">
            @foreach($chats as $chat)
                @if($chat->user_reg_no === auth()->user()->regNo)
                <div
@@ -31,7 +18,7 @@
                    <div class="flex gap-2">
                        <div class="flex flex-col z-10">
                            <p class="">{{ $chat->user_chat }}</p>
-                           <p class="text-gray-600 text-xs mt-2 italic text-right leading-none">{{ labelDate($chat->created_at)}}</p>
+                           <p class="text-gray-600 text-xs mt-2 italic text-right leading-none">{{ $chat->created_at}}</p>
                        </div>
                        <button wire:click="viewDetails({{ $chat->id }})" class="flex mt-1">
                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-three-dots-vertical " viewBox="0 0 16 16">
@@ -63,7 +50,9 @@
                @else
                <div class="mr-auto rounded-lg rounded-tl-none my-1 p-2 text-sm bg-white flex flex-col relative speech-bubble-left">
                        <div class="flex gap-2 bg-gray-200 mb-2 rounded-md items-center w-fit p-1">
-                           <img src="{{ asset('storage/'.$chat->user_photo_url) }}" class="flex h-6 w-6 rounded-md" />
+                           @if($chat->user_photo_url)
+                               <img src="{{ asset('storage/'.$chat->user_photo_url) }}" class="flex h-6 w-6 rounded-md" />
+                           @endif
                            <span class="flex text-xs items-center justify-center italic">{{'@'.\Illuminate\Support\Facades\DB::table('users')->where('regNo', $chat->user_reg_no)->value('username')}}</span>
                        </div>
 
@@ -75,11 +64,11 @@
 
        </div>
 
-        <form wire:submit.prevent="sendMessage" class="flex flex-row items-center justify-end w-full gap-1 mr-4 mt-20">
-            <div class="flex items-center h-20 w-full">
+        <form wire:submit.prevent="sendMessage" class="flex mb-20 flex-row items-center justify-end w-full gap-1 mr-4 mt-20">
+            <div class="flex items-center h-20  w-full">
                 <textarea wire:model="user_chat" type="text" class="rounded-xl items-center h-32 flex w-full p-2"></textarea>
             </div>
-            <div class="flex-shrink-0">
+            <div class="flex items-center justify-center">
                 <button type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" class="bg-white hover:bg-gray-400 rounded-md" height="28" viewBox="0 0 24 24" id="send">
                         <path fill="none" d="M0 0h24v24H0V0z"></path>

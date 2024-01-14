@@ -2,6 +2,7 @@
 
 namespace App\Livewire\UserPages;
 
+use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -103,45 +104,64 @@ class UserProfile extends Component
             'profilePhoto'=>'nullable|file|mimes:png,jpeg,jpg|max:2048',
             'description'=>'nullable|max:109'
         ]);
-        if($this->phoneNumber){
-            $phone = $this->phoneNumber;
+
+        if ($this->phoneNumber == null || $this->email == null || $this->profilePhoto = null || $this->description == null){
+            session()->flash('no_changes', 'No changes were made!');
+
         }else{
-            $phone = auth()->user()->phoneNumber;
+            if($this->phoneNumber){
+                $phone = $this->phoneNumber;
+            }else{
+                $phone = auth()->user()->phoneNumber;
+            }
+            if($this->email){
+                $emailAddress = $this->email;
+            }else{
+                $emailAddress = auth()->user()->email;
+            }
+            if($this->profilePhoto){
+                $path = $this->profilePhoto->store('userImages','public');
+            }else{
+                $path = auth()->user()->photoUrl;
+            }
+            if($this->description){
+                $descrptn = $this->description;
+            }else{
+                $descrptn = auth()->user()->description;
+            }
+
+            $user = Auth::user();
+
+            $user->update([
+                'email'=>$emailAddress,
+                'phoneNumber'=>$phone,
+                'photoUrl'=>$path,
+                'description'=>$descrptn
+            ]);
+
+            $this->reset('email','phoneNumber','profilePhoto','description');
+
+            session()->flash('success_edit', 'Information updated Successfully');
         }
-        if($this->email){
-            $emailAddress = $this->email;
-        }else{
-            $emailAddress = auth()->user()->email;
-        }
-        if($this->profilePhoto){
-            $path = $this->profilePhoto->store('userImages','public');
-        }else{
-            $path = auth()->user()->photoUrl;
-        }
 
-        if($this->description){
-            $descrptn = $this->description;
-        }else{
-            $descrptn = auth()->user()->description;
-        }
+    }
+    public function closeEditMessage()
+    {
+        session()->flash('success_edit', null);
 
-        $user = Auth::user();
+    }
+    public function closeErrorMessage()
+    {
+        session()->flash('no_changes', null);
 
-        $user->update([
-            'email'=>$emailAddress,
-            'phoneNumber'=>$phone,
-            'photoUrl'=>$path,
-            'description'=>$descrptn
-        ]);
-
-        $this->reset('email','phoneNumber','profilePhoto','description');
-
-        session()->flash('success', 'Information updated Successfully');
     }
 
     public function render()
     {
+        $posts = Post::all();
         $this->profilePicture = auth()->user()->photoUrl;
-        return view('livewire.user-pages.user-profile');
+        return view('livewire.user-pages.user-profile',[
+            'posts' => $posts
+        ]);
     }
 }

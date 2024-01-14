@@ -1,14 +1,13 @@
 <div class="relative justify-center w-full items-center flex flex-col">
 {{--   --}}
     <!-- Overlay div (below the content) -->
-    <div  class=" absolute top-0 left-0 inset-48 xs:h-20 xs:-ml-5 xs:inset-14 inline-flex llg:-ml-6 smx:ml-12 bg-yellow-800 sm:h-28 sm:inset-10 sm:w-2/3 sm:ml-7 sml:h-32 sml:inset-12 sml:ml-14 sml:w-96  md:h-44 md:inset-12 xl:h-56 lg:h-52 lg:w-2/3 md:ml-11 lg:inset-48 md:w-2/3 rounded-3xl opacity-50 mt-24 h-56 w-3/4 lg:-ml-16 xl:ml-4  ">
+    <div  class=" absolute top-0 left-0 inset-48 xs:h-20 xs:-ml-5 xs:inset-14 inline-flex llg:-ml-6 smx:ml-12 bg-yellow-800 sm:h-28 sm:inset-10 sm:w-2/3 sm:ml-7 sml:h-32 sml:inset-12 sml:ml-14 sml:w-96  md:h-44 md:inset-12 xl:h-56 lg:h-52 lg:w-2/3 md:ml-11 lg:inset-48 md:w-2/3 rounded-3xl opacity-50 mt-24 h-56 w-3/4 lg:-ml-16 xl:ml-20 ">
         @if($this->profilePicture)
             <img src="{{ asset('storage/'.$this->profilePicture) }} " class="flex md:w-28 xl:w-44 lg:w-36 xs:w-14 xs:m-3 items-center ml-6 bg-green-400 mt-6 rounded-xl sml:w-20 sm:m-3 sm:w-20 sml:m-3 w-44 mb-6" />
         @else
             <div class="flex md:w-28 xl:w-44 lg:w-36 xs:w-14 xs:m-3 items-center justify-center ml-6 bg-green-400 mt-6 rounded-xl sml:w-20 sm:m-3 uppercase xs:text-lg sm:text-4xl lg:text-6xl sm:w-20 sml:m-3 w-44 mb-6">{{ substr(DB::table('users')->where('id', auth()->user()->id)->value('firstname'),0,1)."".substr(DB::table('users')->where('id', auth()->user()->id)->value('surname'),0,1) }}</div>
 
         @endif
-
         <div class="flex flex-col">
             <span class="flex xs:text-xs xs:mt-6 sml:text-xs sml:mt-11 md:text-xs md:mt-14 lg:mt-20 lg:text-xl text-white uppercase sm:text-xs sm:mt-9">{{ \Illuminate\Support\Facades\DB::table('users')->where('id', auth()->user()->id)->value('firstname')." ".substr(DB::table('users')->where('id', auth()->user()->id)->value('midname'),0,1)." ".DB::table('users')->where('id', auth()->user()->id)->value('surname') }}</span>
             <span class="flex xs:text-xs xs:mt-0 sml:text-xs sml:mt-1 md:text-xs md:mt-3 lg:mt-1 italic lg:text-sm text-white lowercase sm:text-xs sm:mt-1">{{ \Illuminate\Support\Facades\DB::table('users')->where('id', auth()->user()->id)->value('role') }}</span>
@@ -18,7 +17,7 @@
     <!-- Content div -->
     <div  class="bg-blue-500 xs:w-64 xs:h-44 sm:w-3/4  sm:h-44 md:h-52 lg:h-96 sml:h-48 sml:w-3/4 md:w-4/5 w-full lg:w-5/6 xl:w-5/6 flex flex-col items-end mt-4 rounded-xl text-white p-4 h-96">
         <div class="w-16 flex gap-3">
-            <div class="flex gap-2 flex-row-reverse -ml-4">
+            <div class="flex gap-4 flex-row-reverse">
 
                     <button wire:click="logout" class="" >
                         <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 16L21 12M21 12L17 8M21 12L7 12M13 16V17C13 18.6569 11.6569 20 10 20H6C4.34315 20 3 18.6569 3 17V7C3 5.34315 4.34315 4 6 4H10C11.6569 4 13 5.34315 13 7V8" stroke="#374151" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
@@ -28,22 +27,6 @@
                     </button>
 
 
-                <div class="relative inline-block text-left ">
-                    <button wire:click="openNotification" class="flex items-center justify-center w-8 h-8 text-gray-500 hover:text-gray-900 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-                        </svg>
-                    </button>
-                    @if($this->showDropdown)
-                        <div  class="origin-top-right absolute right-0 mt-2 w-96 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5 flex flex-col">
-                            <!-- Dropdown content here -->
-                            <a href="#" class=" px-4 py-6 text-gray-900 hover:bg-gray-100 hover:rounded-lg">Item 1</a>
-                            <a href="#" class=" px-4 py-6 text-gray-900 hover:bg-gray-100 hover:rounded-lg">Item 2</a>
-                            <a href="#" class=" px-4 py-6 text-gray-900 hover:bg-gray-100 hover:rounded-lg">Item 3</a>
-                        </div>
-                    @endif
-
-                </div>
 
 
 
@@ -60,8 +43,35 @@
                             <span class="sr-only">Close modal</span>
                         </button>
                         <div class="px-6 py-6 lg:px-8 flex flex-col mt-8 items-center">
-                            <h3 class="mb-4  items-center flex justify-center text-white font-medium w-80 dark:text-white">Edit Profile</h3>
-                            <img src="your-image.jpg" alt="Your Image" class="bg-yellow-800 rounded-full w-20 h-20">
+                            @if(session()->has('success_edit'))
+                                <div id="toast-success" class="flex ml-4 items-center w-full mt-4 max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+                                    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                                        </svg>
+                                        <span class="sr-only">Check icon</span>
+                                    </div>
+                                    <div class="ms-3 text-sm font-normal">{{ session('success_edit') }}</div>
+                                </div>
+                            @endif
+                                @if(session()->has('no_changes'))
+                                    <div id="toast-warning" class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+                                        <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200">
+                                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
+                                            </svg>
+                                            <span class="sr-only">Warning icon</span>
+                                        </div>
+                                        <div class="ms-3 text-sm font-normal">{{ session('no_changes') }}</div>
+                                    </div>
+                                @endif
+                            <h3 class="mb-4 mt-4  items-center flex justify-center text-white font-medium w-80 dark:text-white">Edit Profile</h3>
+                            @if($this->profilePicture)
+                                <img src=" {{ asset('storage/'.$this->profilePicture) }} " alt="Your Image" class="bg-yellow-800 rounded-full w-20 h-20">
+                            @else
+                                <div class="bg-yellow-800 p-10 rounded-full w-fit h-fit">{{ substr(DB::table('users')->where('id', auth()->user()->id)->value('firstname'),0,1)."".substr(DB::table('users')->where('id', auth()->user()->id)->value('surname'),0,1) }}</div>
+                            @endif
+
 
                             <form wire:submit="editProfile" class="space-y-2 flex flex-col items-center">
                                 <div class="flex flex-col gap-1">
@@ -192,15 +202,28 @@
             <div class="flex flex-col mt-6 gap-3 italic text-sm md:text-xs lg:text-sm sml:text-xs sm:text-xs xs:text-xs">
                 <div class="flex w-full justify-between ">
                     <span >Total slots:</span>
-                    <span class="flex font-medium">6</span>
+                    @if($posts)
+                        <span class="flex font-medium">{{ $posts->count() }}</span>
+                    @else
+                        <span class="flex font-medium">0</span>
+                    @endif
                 </div>
+                @php
+                $user_voted_posts = (int) \App\Models\Vote::where('voter_reg_no', auth()->user()->regNo)->count();
+                @endphp
                 <div class="flex w-full justify-between ">
                     <span>Completed slots:</span>
-                    <span class="flex font-medium">4</span>
+                    @if($user_voted_posts)
+                        <span class="flex font-medium">{{ $user_voted_posts }}</span>
+                    @else
+                        <span class="flex font-medium">0</span>
+                    @endif
                 </div>
                 <div class="flex w-full justify-between ">
                     <span>Incomplete slots:</span>
-                    <span class="flex font-medium">2</span>
+                    @if($posts)
+                        <span class="flex font-medium"> {{ $posts->count() - $user_voted_posts }} </span>
+                    @endif
                 </div>
 
 

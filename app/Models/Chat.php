@@ -14,10 +14,10 @@ class Chat extends Model
 
     public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($value)->format('H:i');
+        return Carbon::parse($value)->format('D, d M Y H:i');
     }
     public function getUpdatedAtAttribute($value)
     {
-        return Carbon::parse($value)->format('H:i');
+        return Carbon::parse($value)->format('D, d M Y H:i');
     }
 }

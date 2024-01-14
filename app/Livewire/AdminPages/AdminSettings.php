@@ -22,7 +22,7 @@ class AdminSettings extends Component
         ]);
 
         if(DB::table('election_dates')->exists()){
-            dd('date already specified!');
+            session()->flash('exists', 'Election duration has already been specified!');
         }else{
             $start_date = Carbon::parse($this->start_date);
             $end_date = Carbon::parse($this->end_date);
@@ -32,9 +32,25 @@ class AdminSettings extends Component
             $election->end_date = Carbon::create($end_date->year, $end_date->month, $end_date->day, 0, 0, 0);
             $election->save();
 
-            dd('dates successfully submitted!');
+            session()->flash('date_success', 'Election duration successfully set!');
+
         }
 
+
+    }
+    public function closeDateMessage()
+    {
+        session()->flash('date_success', null);
+
+    }
+    public function closeExistsMessage()
+    {
+        session()->flash('exists', null);
+
+    }
+    public function closeUpdateMessage()
+    {
+        session()->flash('date_update', null);
 
     }
 
@@ -43,7 +59,7 @@ class AdminSettings extends Component
         $get_date = ElectionDate::first();
         $get_date->delete();
 
-        dd('Set new Timer duration!! ');
+        session()->flash('date_update', 'You can now set a new election duration!');
 
     }
 
