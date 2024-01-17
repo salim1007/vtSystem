@@ -1,5 +1,5 @@
-<div class="flex w-full h-full flex-col bg-blue-400">
-    <div class="p-3 pl-4 flex font-medium items-center shadow-lg justify-center bg-amber-200 h-14 text-sm">
+<div class="flex w-full h-full flex-col bg-gray-200">
+    <div class="p-4 pl-4 flex font-medium items-center shadow-lg justify-center bg-gray-300 h-14 text-sm">
         Terms and Conditions
     </div>
     <div class="flex h-full w-fit flex-col ml-4 mt-4 mr-4 text-sm">

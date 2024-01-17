@@ -38,53 +38,53 @@
 
 
     </div>
-    <div class="flex justify-center w-full bg-slate-600  ">
+    <div class="flex justify-center w-full bg-gray-100  ">
         @if(session()->get('vali') == 'dashboard')
             <div class="flex flex-col w-full">
                 <livewire:admin-pages.admin-dashboard />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                     <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                 </footer>
             </div>
         @elseif(session()->get('vali') == 'createPosts')
            <div class="flex flex-col w-full">
                <livewire:admin-pages.admin-post-creator />
-               <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+               <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                    <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                </footer>
            </div>
         @elseif(session()->get('vali') == 'editCandidate')
             <div class="flex flex-col w-full">
                 <livewire:admin-pages.admin-candidate-creator />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                     <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                 </footer>
             </div>
         @elseif(session()->get('vali') == 'candlist')
             <div class="flex flex-col w-full">
                 <livewire:admin-pages.admin-cand-list />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                     <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                 </footer>
             </div>
         @elseif(session()->get('vali') == 'progress')
            <div class="flex flex-col w-full">
                <livewire:admin-pages.admin-progress-page />
-               <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+               <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                    <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                </footer>
            </div>
         @elseif(session()->get('vali') == 'mailbox')
            <div class="flex flex-col w-full">
                <livewire:admin-pages.admin-mailbox />
-               <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+               <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                    <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                </footer>
            </div>
         @elseif(session()->get('vali') == 'settings')
             <div class="flex flex-col w-full">
                 <livewire:admin-pages.admin-settings />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                     <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                 </footer>
             </div>

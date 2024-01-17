@@ -15,8 +15,7 @@
         <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/profile">Profile</a>
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/candidates">Candidates</a>
-            <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/how_to">How To</a>
-            @if(!$this->date_is_in_btn)
+            @if($this->date_is_in_btn)
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/vote">Vote</a>
             @endif
             <a wire:navigate class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="/chatroom">ChatRoom</a>
@@ -49,11 +48,11 @@
         </nav>
 
     </div>
-    <div class="flex justify-center w-full bg-slate-600 ">
+    <div class="flex justify-center w-full bg-gray-200 ">
         @if(session()->get('vali') == 'profile')
             <div class="flex flex-col w-full">
                 <livewire:user-pages.user-profile />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                     <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                 </footer>
             </div>
@@ -61,24 +60,16 @@
         @elseif(session()->get('vali') == 'candidates')
             <div class="flex flex-col w-full items-center">
                 <livewire:user-pages.user-candidates />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
-                    <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
-                </footer>
-            </div>
-
-        @elseif(session()->get('vali') == 'how_to')
-            <div class="flex flex-col w-full">
-                <livewire:user-pages.user-how-to />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                     <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                 </footer>
             </div>
 
         @elseif(session()->get('vali') == 'vote')
-            @if(!$this->date_is_in_btn)
+            @if($this->date_is_in_btn)
                 <div class="flex flex-col w-full">
                     <livewire:user-pages.user-votepage />
-                    <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                    <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                         <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                     </footer>
                 </div>
@@ -91,7 +82,7 @@
         @elseif(session()->get('vali') == 'chatroom')
             <div class="flex flex-col w-full">
                 <livewire:user-pages.user-chatroom />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                     <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                 </footer>
             </div>
@@ -100,7 +91,7 @@
             @if(!$this->date_is_in_btn)
                 <div class="flex flex-col w-full">
                     <livewire:user-pages.user-results />
-                    <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                    <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                         <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                     </footer>
                 </div>
@@ -112,7 +103,7 @@
         @elseif(session()->get('vali') == 'mail')
             <div class="flex flex-col w-full">
                 <livewire:user-pages.user-mailbox />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                     <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                 </footer>
             </div>
@@ -120,7 +111,7 @@
         @elseif(session()->get('vali') == 'privacy_policy')
             <div class="flex flex-col w-full">
                 <livewire:user-pages.user-p-r-policy />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                     <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                 </footer>
             </div>
@@ -128,7 +119,7 @@
         @elseif(session()->get('vali') == 'terms_of_service')
             <div class="flex flex-col w-full">
                 <livewire:user-pages.user-terms />
-                <footer class="flex xs:text-xs w-full p-3 bg-gray-400">
+                <footer class="flex xs:text-xs w-full p-3 bg-gray-300">
                     <p class="font-medium">&copy; <span id="currentYear"></span> vtSystem</p>
                 </footer>
             </div>

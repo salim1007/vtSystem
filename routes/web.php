@@ -36,43 +36,84 @@ Route::get('/userProfile', function () {
 //admin routes here..........
 
 Route::get('/dashboard', function () {
-    $token = session()->get('jwt_token');
-    session()->put('vali','dashboard');
-    return view('adminview', ['token' => $token]);
+    if (auth()->user()->role == 'admin') {
+        $token = session()->get('jwt_token');
+        session()->put('vali', 'dashboard');
+        return view('adminview', ['token' => $token]);
+    }
+    return '<div >
+        <div > 401 - Unauthorized</div>
+    </div>';
 });
 
 Route::get('/candlist', function () {
-    $token = session()->get('jwt_token');
-    session()->put('vali','candlist');
-    return view('adminview', ['token' => $token]);
+    if(auth()->user()->role == 'admin') {
+        $token = session()->get('jwt_token');
+        session()->put('vali', 'candlist');
+        return view('adminview', ['token' => $token]);
+    }
+    return '<div >
+        <div > 401 - Unauthorized</div>
+    </div>';
 });
 Route::get('/createPosts', function () {
-    $token = session()->get('jwt_token');
-    session()->put('vali','createPosts');
-    return view('adminview', ['token' => $token]);
+    if (auth()->user()->role == 'admin') {
+        $token = session()->get('jwt_token');
+        session()->put('vali', 'createPosts');
+        return view('adminview', ['token' => $token]);
+    }
+    return '<div >
+        <div > 401 - Unauthorized</div>
+    </div>';
 });
 Route::get('/editCandidate', function () {
-    $token = session()->get('jwt_token');
-    session()->put('vali','editCandidate');
-    return view('adminview', ['token' => $token]);
+    if (auth()->user()->role == 'admin') {
+        $token = session()->get('jwt_token');
+        session()->put('vali', 'editCandidate');
+        return view('adminview', ['token' => $token]);
+    }
+    return '<div >
+        <div > 401 - Unauthorized</div>
+    </div>';
+
 });
 Route::get('/progress', function () {
-    $token = session()->get('jwt_token');
-    session()->put('vali','progress');
-    return view('adminview', ['token' => $token]);
+    if (auth()->user()->role == 'admin') {
+        $token = session()->get('jwt_token');
+        session()->put('vali', 'progress');
+        return view('adminview', ['token' => $token]);
+    }
+    return '<div >
+        <div > 401 - Unauthorized</div>
+    </div>';
 });
 Route::get('/mailbox', function () {
-    $token = session()->get('jwt_token');
-    session()->put('vali','mailbox');
-    return view('adminview', ['token' => $token]);
+    if(auth()->user()->role == 'admin') {
+        $token = session()->get('jwt_token');
+        session()->put('vali', 'mailbox');
+        return view('adminview', ['token' => $token]);
+    }
+    return '<div >
+        <div > 401 - Unauthorized</div>
+    </div>';
 });
 Route::get('/settings', function () {
-    $token = session()->get('jwt_token');
-    session()->put('vali','settings');
-    return view('adminview', ['token' => $token]);
+    if (auth()->user()->role == 'admin') {
+        $token = session()->get('jwt_token');
+        session()->put('vali', 'settings');
+        return view('adminview', ['token' => $token]);
+    }
+    return '<div >
+        <div> 401 - Unauthorized</div>
+    </div>';
 });
 Route::get('/pdf', function () {
-    return view('livewire.admin-pages.create-p-d-f');
+    if (auth()->user()->role == 'admin') {
+        return view('livewire.admin-pages.create-p-d-f');
+    }
+    return '<div >
+        <div > 401 - Unauthorized</div>
+    </div>';
 });
 
 
@@ -90,11 +131,7 @@ Route::get('/candidates', function () {
     session()->put('vali','candidates');
     return view('viewchanger', ['token' => $token]);
 });
-Route::get('/how_to', function () {
-    $token = session()->get('jwt_token');
-    session()->put('vali','how_to');
-    return view('viewchanger', ['token' => $token]);
-});
+
 Route::get('/vote', function () {
     $token = session()->get('jwt_token');
     session()->put('vali','vote');

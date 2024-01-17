@@ -1,10 +1,10 @@
 <div class="flex flex-col w-full xs:text-xs h-full">
-    <div class="flex h-14 pl-4 items-center justify-between shadow-lg bg-blue-400 w-full">
+    <div class="flex h-14 pl-4 items-center justify-between shadow-lg bg-gray-300 w-full">
         <div class="flex gap-3 items-center">
-            <span class="p-1 font-bold">Progress</span>
+            <span class="p-1 text-sm font-bold">Progress</span>
             @if(!$this->date_is_in_btn)
                 <span>
-           <button wire:click="generatePDF" class="flex rounded-md p-1 hover:bg-red-400 text-black bg-red-500 items-center gap-1">
+           <button wire:click="generatePDF" class="flex rounded-md p-1 hover:bg-red-400 text-black bg-red-400 items-center gap-1">
                <span>Download</span>
                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 18a.969.969 0 0 0 .933 1h12.134A.97.97 0 0 0 15 18M1 7V5.828a2 2 0 0 1 .586-1.414l2.828-2.828A2 2 0 0 1 5.828 1h8.239A.97.97 0 0 1 15 2v5M6 1v4a1 1 0 0 1-1 1H1m0 9v-5h1.5a1.5 1.5 0 1 1 0 3H1m12 2v-5h2m-2 3h2m-8-3v5h1.375A1.626 1.626 0 0 0 10 13.375v-1.75A1.626 1.626 0 0 0 8.375 10H7Z"/>
@@ -19,11 +19,11 @@
             </svg>
         </button>
     </div>
-    <div class="flex flex-col bg-gray-400 h-full">
+    <div class="flex flex-col bg-gray-200 h-full">
 
-        <span class=" flex flex-col mt-4 justify-center items-center font-medium">Election Progress</span>
+        <span class=" flex flex-col mt-4 text-sm justify-center items-center font-bold">Election Progress</span>
         @foreach(\Illuminate\Support\Facades\DB::table('posts')->get() as $post)
-            <div class="mt-4 bg-green-200 xs:flex xs:flex-col flex gap-3 w-full p-3">
+            <div class="mt-4 bg-gray-200 xs:flex xs:flex-col flex gap-3 w-full p-3">
                 <div class="flex flex-col gap-3 xs:w-full smx:w-72 w-1/2">
                     <div class="flex gap-2 bg-purple-400 shadow-lg justify-between rounded-md p-3">
                         <span class="font-medium">Post:</span>

@@ -57,9 +57,10 @@ class AdminSettings extends Component
     public function UpdateTimer()
     {
         $get_date = ElectionDate::first();
-        $get_date->delete();
-
-        session()->flash('date_update', 'You can now set a new election duration!');
+        if($get_date){
+            $get_date->delete();
+            session()->flash('date_update', 'You can now set a new election duration!');
+        }
 
     }
 

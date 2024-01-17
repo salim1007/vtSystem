@@ -1,14 +1,12 @@
 <div  class=" flex flex-col w-full h-screen ">
-    <div class=" flex h-16 items-center justify-center gap-2 bg-green-400">
-        <input type="search" class="rounded-xl" placeholder="Search Name..." />
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 30 30">
-            <path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"></path>
-        </svg>
+    <div class=" flex h-16  items-center pl-4 font-bold gap-2 bg-gray-300">
+        Chatroom
+        <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" viewBox="0 0 24 24" id="chat"><path d="M20.61,19.19A7,7,0,0,0,17.87,8.62,8,8,0,1,0,3.68,14.91L2.29,16.29a1,1,0,0,0-.21,1.09A1,1,0,0,0,3,18H8.69A7,7,0,0,0,15,22h6a1,1,0,0,0,.92-.62,1,1,0,0,0-.21-1.09ZM8,15a6.63,6.63,0,0,0,.08,1H5.41l.35-.34a1,1,0,0,0,0-1.42A5.93,5.93,0,0,1,4,10a6,6,0,0,1,6-6,5.94,5.94,0,0,1,5.65,4c-.22,0-.43,0-.65,0A7,7,0,0,0,8,15ZM18.54,20l.05.05H15a5,5,0,1,1,3.54-1.46,1,1,0,0,0-.3.7A1,1,0,0,0,18.54,20Z"></path></svg>
     </div>
 
 
     <div class="py-4 relative flex flex-grow justify-between flex-col px-10 " style="background-color:#e5ddd5;">
-        <span class="mb-6 text-sm rounded-3xl shadow-lg bg-blue-400 w-fit p-2">Have a chat with your fellows</span>
+        <span class="mb-6 text-sm rounded-3xl shadow-lg bg-gray-200 w-fit p-2">Have a chat with your fellows</span>
 
        <div  wire:poll.keep-alive.100ms class="flex flex-col shadow-none  p-4  overflow-x-hidden scrollbar-hidden rounded-md h-96 overflow-y-auto ">
            @foreach($chats as $chat)

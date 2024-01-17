@@ -1,25 +1,12 @@
 <div class=" bg-blue-400 flex h-full flex-col w-full">
-    <div class="p-3 flex bg-amber-200 xs:text-xs lg:text-sm ">
-        Hi, {{ auth()->user()->firstname }}. The election results are now available.
+    <div class="p-4 flex bg-gray-300 xs:text-xs lg:text-sm ">
+        Hi, <b class="ml-1">{{ auth()->user()->firstname }}</b>. The election results are now available.
     </div>
-    <div class="flex flex-col  h-full">
-        <span class="bg-green-400 xs:text-xs flex p-3 lg:text-sm">
-            The following are the results of the 2023 election held at UDSM.
+    <div class="flex flex-col h-full">
+        <span class="bg-gray-200 shadow-lg xs:text-xs flex p-3 lg:text-sm">
+            The following are the results of the 2023 election held at UDSM:
         </span>
-        <div class="bg-yellow-200 h-full flex flex-col p-3">
-            <div class="pb-4 dark:bg-gray-900">
-                <label for="table-search" class="sr-only xs:text-xs lg:text-sm">Search</label>
-                <div class="relative mt-1">
-                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                        </svg>
-                    </div>
-                    <input type="text" id="table-search" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for items">
-                </div>
-            </div>
-
-
+        <div class="bg-gray-200 h-full flex flex-col p-3">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 @php
                     $post_codes = [];

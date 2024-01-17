@@ -1,10 +1,10 @@
-<div class="flex w-full flex-col bg-blue-400 h-screen">
-    <div class="p-3 pl-4 flex font-medium items-center justify-center bg-amber-200 h-14 text-sm">
-        Your thoughts about the system
+<div class="flex w-full flex-col  h-screen">
+    <div class="p-3 pl-4 flex font-bold items-center bg-gray-300 h-14 text-sm">
+        Mailbox
     </div>
-    <form wire:submit.prevent="sendResponse" class="flex h-full bg-slate-400 flex-col">
-        <span class="flex p-2.5 w-fit m-4 font-medium text-xs bg-amber-100 shadow-lg rounded-lg"> We rely on your response to improve our system, please feel free to contribute.</span>
-        <span class="flex p-2.5 w-fit m-4 font-medium text-xs bg-amber-100 shadow-lg rounded-lg"> We'll ensure the confidentiality of your response</span>
+    <form wire:submit.prevent="sendResponse" class="flex h-full bg-gray-100 flex-col">
+        <span class="flex p-2.5 w-fit m-4 font-medium text-xs bg-gray-200 shadow-lg rounded-lg"> We rely on your response to improve our system, please feel free to contribute.</span>
+        <span class="flex p-2.5 w-fit m-4 font-medium text-xs bg-gray-200 shadow-lg rounded-lg"> We'll ensure the confidentiality of your response</span>
         @if(session()->has('success_mail'))
             <div id="toast-success" class="flex ml-4 items-center w-full mt-4 max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
                 <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
@@ -27,7 +27,7 @@
             <textarea wire:model="mail_body" type="text" class="flex m-4 w-full text-sm h-32 rounded-md"></textarea>
 
         </div>
-        <button type="submit" class="flex ml-4 bg-amber-100 w-fit p-1 rounded-md text-sm">
+        <button type="submit" class="flex ml-4 shadow-lg bg-gray-200 w-fit p-2 rounded-md text-sm">
             Submit
         </button>
 

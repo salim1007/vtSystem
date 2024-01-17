@@ -11,20 +11,20 @@
 
                 </div>
                 <!-- Content div -->
-                <div class="bg-blue-500 w-full smx:h-72 xs:-mt-12 xs:h-96 flex xs:flex-col flex-col items-start xs:text-xs -mt-20 rounded-xl text-white p-4 h-64">
+                <div class="bg-gray-300 shadow-xl text-gray-700 w-full smx:h-72 xs:-mt-12 xs:h-96 flex xs:flex-col flex-col items-start xs:text-xs -mt-20 rounded-xl p-4 h-64">
                     <span class=" xs:mt-12 uppercase xs:text-xs -mt-12">{{ $candidate->full_name }}</span>
                     <span class=" xs:mt-1 mt-5 xs:text-xs"> Post: {{ $candidate->post }}</span>
                     <span class=" xs:mt-1 xs:text-xs">Year {{ $candidate->year }} - {{ $candidate->college }}</span>
-                    <span class="mt-4 w-full sml:h-36 sm:h-64 xs:h-56 rounded-md bg-red-400 p-2 xs:text-xs">
+                    <span class="mt-4 w-full sml:h-36 sm:h-64 xs:h-56 rounded-md bg-gray-200 p-2 xs:text-xs">
                         {{ $candidate->description }}
                 </span>
                 </div>
             </div>
             <div class="flex flex-col float-left mt-4 gap-2">
-                <button wire:click="viewCampaign({{ $candidate->id }})" class="rounded-md hover:bg-[#2557D6]/90 xs:w-28 xs:text-xs bg-red-500 p-2 w-64">
+                <button wire:click="viewCampaign({{ $candidate->id }})" class="rounded-md hover:bg-gray-400 xs:w-28 xs:text-xs bg-gray-300 shadow-lg p-2 w-64">
                     View Campaign
                 </button>
-                <button wire:click="viewPhotos({{ $candidate->id }})" class="rounded-md hover:bg-[#3b5998]/90 xs:w-28 xs:text-xs bg-red-500 p-2 w-64">
+                <button wire:click="viewPhotos({{ $candidate->id }})" class="rounded-md hover:bg-gray-400 xs:w-28 xs:text-xs bg-gray-300 shadow-lg p-2 w-64">
                     View Photos
                 </button>
             </div>

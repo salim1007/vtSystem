@@ -26,8 +26,6 @@ class DynamicView extends Component
                 $this->date_is_in_btn = false;
 
             }
-        } else {
-            dd('No dates have been submitted yet!');
         }
     }
 

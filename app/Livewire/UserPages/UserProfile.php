@@ -65,8 +65,6 @@ class UserProfile extends Component
             } else {
                 $this->date_is_in_btn = false;
             }
-        } else {
-            dd('No dates have been submitted yet!');
         }
     }
 
@@ -105,7 +103,7 @@ class UserProfile extends Component
             'description'=>'nullable|max:109'
         ]);
 
-        if ($this->phoneNumber == null || $this->email == null || $this->profilePhoto = null || $this->description == null){
+        if ($this->phoneNumber == '' && $this->email == '' && $this->profilePhoto = '' && $this->description == ''){
             session()->flash('no_changes', 'No changes were made!');
 
         }else{
